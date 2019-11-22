@@ -1,0 +1,90 @@
+﻿@using DemoEshop.PresentationLayer.Helpers.Cookies
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Demo Eshop</title>
+    @RenderSection("head", required: false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Demo Eshop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="navbar-toggler-icon" />
+            </button>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav mr-auto">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">@Html.ActionLink("Products", "Index", "AdminProducts", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item mr-auto">@Html.ActionLink("Customers", "Index", "AdminCustomers", null, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li class="nav-item mr-auto">@Html.ActionLink("Products", "Index", "Products", null, new { @class = "nav-link" })</li>
+                    }
+                </ul>
+                <ul class="navbar-nav">
+                    @if (!this.ViewContext.RouteData.Values["controller"].ToString().Equals("ShoppingCart") && !User.IsInRole("Admin") && User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ShoppingCart">
+                                <span class="fa fa-shopping-cart" style="margin-right: 5px;"></span>
+                                @{
+                                    var shoppingItemsCount = Request.GetAllShoppingCartItems("daisy@gmail.com").Count;
+                                    if (shoppingItemsCount > 0)
+                                    {
+                                        <span class="label label-default label-pill "> @shoppingItemsCount items</span>
+                                    }
+                                }
+                            </a>
+                        </li>
+                    }
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown"><span class="fa fa-user"></span> @User.Identity.Name.Split('@')[0] <b class="caret grey"></b></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Account management</div>
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown"><span class="fa fa-user"></span><b class="caret grey"></b></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Get started</div>
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Register", "Register", "Account", null, new { @class = "dropdown-item" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p class="text-muted float-right">&copy; @DateTime.Now.Year created by Martin Macák & Jaroslav Davídek</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/css/font-awesome.min.css")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

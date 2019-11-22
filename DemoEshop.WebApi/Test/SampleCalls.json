@@ -1,0 +1,162 @@
+{
+	"variables": [],
+	"info": {
+		"name": "DemoEshop2017",
+		"_postman_id": "9c445694-c963-592e-ad23-426c53494519",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:56118/api/Products/Query?sort=name&asc=true&name=Samsung&minimalPrice=5000&maximalPrice=23000&category=android&category=ios",
+			"request": {
+				"url": {
+					"raw": "http://localhost:56118/api/Products/Query?sort=name&asc=true&name=Samsung&minimalPrice=5000&maximalPrice=23000&category=android&category=ios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "56118",
+					"path": [
+						"api",
+						"Products",
+						"Query"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "name",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "asc",
+							"value": "true",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "name",
+							"value": "Samsung",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "minimalPrice",
+							"value": "5000",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "maximalPrice",
+							"value": "23000",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "category",
+							"value": "android",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "category",
+							"value": "ios",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Query"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56118/api/Products/Get?name=lg",
+			"request": {
+				"url": {
+					"raw": "http://localhost:56118/api/Products/Get?name=lg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "56118",
+					"path": [
+						"api",
+						"Products",
+						"Get"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "lg",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56118/api/Products/",
+			"request": {
+				"url": "http://localhost:56118/api/Products/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Product\": {\n\t    \"Id\": \"00000000-0000-0000-0000-000000000000\",\n\t\t\"Name\": \"Galaxy S8\",\n\t\t\"Price\": 18890,\n\t    \"StoredUnits\": 3, \n\t    \"DiscountPercentage\": 0,\n\t    \"DiscountType\": 0,\n        \"Description\": \"Samsung Galaxy S8 smartphone was launched in March 2017. The phone comes with a 5.80-inch touchscreen display with a resolution of 1440 pixels by 2960 pixels at a PPI of 570 pixels per inch. Samsung Galaxy S8 price in India starts from Rs. 57,900. The Samsung Galaxy S8 is powered by 1.9GHz octa-core Samsung Exynos 8895 processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that can be expanded up to 256GB via a microSD card. As far as the cameras are concerned, the Samsung Galaxy S8 packs a 12-megapixel primary camera on the rear and a 8-megapixel front shooter for selfies. The Samsung Galaxy S8 runs Android 7.0 and is powered by a 3000mAh non removable battery. It measures 148.90 x 68.10 x 8.00 (height x width x thickness) and weigh 155.00 grams. The Samsung Galaxy S8 is a single SIM (GSM) . Connectivity options include Wi-Fi, GPS, Bluetooth, NFC, 3G and 4G. Sensors on the phone include Compass Magnetometer, Proximity sensor, Accelerometer, Ambient light sensor and Gyroscope.\",\n\t    \"ProductImgUri\": \"\\\\Content\\\\Images\\\\Products\\\\Samsung-Galaxy-S8.jpg\",\n\t    \"CurrentlyAvailableUnits\": null\n\t\t},\n\t\"CategoryName\": \"android\"\n}"
+				},
+				"description": "Create"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56118/api/Products/aa15dc64-5c07-40fe-a916-175165b9b90f",
+			"request": {
+				"url": "http://localhost:56118/api/Products/aa15dc64-5c07-40fe-a916-175165b9b90f",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Id\": \"aa15dc64-5c07-40fe-a916-175165b9b90f\",\n\t\"Name\": \"50% discount: Apple iPhone SE \",\n\t\"Price\": 16990,\n\t\"CategoryId\": \"aa04dc64-5c07-40fe-a916-175165b9b90f\",\n    \"StoredUnits\": 5, \n    \"DiscountPercentage\": 50,\n    \"DiscountType\": 0,\n    \"ProductImgUri\": \"\\\\Content\\\\Images\\\\Products\\\\3222016120930AM_635_apple_iphone_se.jpeg\",\n    \"Description\": \"The phone comes with a 4.00-inch touchscreen display with a resolution of 640 pixels by 1136 pixels at a PPI of 326 pixels per inch. The Apple iPhone SE is powered by A9 processor and it comes with 2GB of RAM.The phone packs 64GB of internal storage cannot be expanded. As far as the cameras are concerned, the Apple iPhone SE packs a 12-megapixel primary camera on the rear and a 1.2-megapixel front shooter for selfies. The Apple iPhone SE runs iOS 9.3. It measures 123.80 x 58.60 x 7.66 (height x width x thickness) and weighs 113.00 grams. The Apple iPhone SE is a single SIM(GSM) smartphone that accepts a Nano-SIM.Connectivity options include Wi-Fi, GPS, Bluetooth, NFC, 4G(with support for Band 40 used by some LTE networks in India). Sensors on the phone include Proximity sensor, Ambient light sensor, Accelerometer, and Gyroscope. \",\n    \"CurrentlyAvailableUnits\": null\n}"
+				},
+				"description": "Update"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56118/api/Products/aa16dc64-5c07-40fe-a916-175165b9b90f",
+			"request": {
+				"url": "http://localhost:56118/api/Products/aa16dc64-5c07-40fe-a916-175165b9b90f",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

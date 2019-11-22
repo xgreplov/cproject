@@ -1,0 +1,111 @@
+﻿@using DemoEshop.BusinessLayer.DataTransferObjects
+@model DemoEshop.PresentationLayer.Models.ShoppingCart.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "ShoppingItemsListView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Shopping cart items:</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr/>
+
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Regular price
+                </th>
+                <th>
+                    Discount
+                </th>
+                <th>
+                    Amount
+                </th>
+            </tr>
+
+            @for (var i = 0; i < Model.ShoppingCartItems.Count; i++)
+            {
+                var item = Model.ShoppingCartItems[i];
+
+                /* Passing all properties of shoppingItem
+                   product property as form hidden fields */
+                foreach (var property in typeof(ProductDto).GetProperties())
+                {
+                    <input type="hidden" name="Model.ShoppingCartItems[@i].Product.@property.Name" value="@property.GetValue(Model.ShoppingCartItems[i].Product)" />
+                }
+                foreach (var property in typeof(CustomerDto).GetProperties())
+                {
+                    <input type="hidden" name="Model.Customer.@property.Name" value="@property.GetValue(Model.Customer)" />
+                }
+
+                <tr>
+                    <td class="text-center">
+                        <img src="@item.Product.ProductImgUri" height="50"/>
+                    </td>
+                    <td>
+                        <h4>@item.Product.Name</h4>
+                    </td>
+                    <td>
+                        @if (item.Product.DiscountPercentage > 0)
+                        {
+                            <h4 class="text-danger"><del>@item.Product.Price.ToString("N2") CZK</del></h4>
+                        }
+                        else
+                        {
+                            <h4>@item.Product.Price.ToString("N2") CZK</h4>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Product.DiscountPercentage > 0)
+                        {
+                            <h4 class="text-success">@item.Product.DiscountPercentage %</h4>
+                        }
+                        else
+                        {
+                            <h4> - </h4>
+                        }
+                    </td>
+                    <td>
+                        @{/* Validation will be performed on server side because currently available units count need to be checked */}
+                        @if (item.Product.CurrentlyAvailableUnits.HasValue)
+                        {
+                            <input type="number" min="0" max="@item.Product.CurrentlyAvailableUnits.Value" name="Model.ShoppingCartItems[@i].Value" value="@Model.ShoppingCartItems[i].Value" class="form-control"/>
+                        }
+                        else
+                        {
+                            <input type="number" min="0" name="Model.ShoppingCartItems[@i].Value" value="@Model.ShoppingCartItems[i].Value" class="form-control" />
+                        }
+                    </td>
+                </tr>
+                
+                            
+            }
+        </table>
+
+        <div class="row">
+            <h3>Total price: @Model.TotalPrice.ToString("N2") CZK</h3>
+        </div>
+
+        <div class="form-group">
+            <div class="text-center">
+                @Html.ActionLink("Clear", "ClearAllItems", "ShoppingCart", new object { }, new { @class = "btn btn-danger pull-left" })
+                <input type="submit" value="Save and continue shopping" class="btn btn-default" name="action:SaveAndContinueShopping"/>
+                <input type="submit" value="Proceed with Order" class="btn btn-primary pull-right" name="action:Proceed"/>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

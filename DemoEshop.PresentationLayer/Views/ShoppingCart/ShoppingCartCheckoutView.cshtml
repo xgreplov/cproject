@@ -1,0 +1,119 @@
+﻿@model DemoEshop.PresentationLayer.Models.ShoppingCart.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "ShoppingCartCheckoutView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <h3>Customer details:</h3>
+
+
+        <div class="row">
+            <h5 class="col-md-2 col-md-offset-1">Name:</h5>
+            <h5 class="col-md-6">@Model.Customer.FirstName @Model.Customer.LastName</h5>
+        </div>
+
+        <div class="row">
+            <h5 class="col-md-2 col-md-offset-1">Birth date:</h5>
+            <h5 class="col-md-6">@Model.Customer.BirthDate.ToShortDateString()</h5>
+        </div>
+
+        <div class="row">
+            <h5 class="col-md-2 col-md-offset-1">Address:</h5>
+            <h5 class="col-md-6">@Model.Customer.Address</h5>
+        </div>
+
+        <div class="row">
+            <h5 class="col-md-2 col-md-offset-1">Contact email:</h5>
+            <h5 class="col-md-6">@Model.Customer.Email</h5>
+        </div>
+
+        <div class="row">
+            <h5 class="col-md-2 col-md-offset-1">Mobile phone:</h5>
+            <h5 class="col-md-6">@Model.Customer.MobilePhoneNumber</h5>
+        </div>
+
+        <div class="row">
+            <h5 class="col-md-2 col-md-offset-1">Payment type:</h5>
+            <h5 class="col-md-6">Cash on delivery</h5>
+        </div>
+
+        <hr/>
+
+        <h3>Ordered items:</h3>
+
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Regular price
+                </th>
+                <th>
+                    Discount
+                </th>
+                <th>
+                    Amount
+                </th>
+            </tr>
+
+            @for (var i = 0; i < Model.ShoppingCartItems.Count; i++)
+            {
+                var item = Model.ShoppingCartItems[i];
+
+                <tr>
+                    <td class="text-center">
+                        <img src="@item.Product.ProductImgUri" height="30"/>
+                    </td>
+                    <td>
+                        <h5>@item.Product.Name</h5>
+                    </td>
+                    <td>
+                        @if (item.Product.DiscountPercentage > 0)
+                        {
+                            <h5 class="text-danger"><del>@item.Product.Price.ToString("N2") CZK</del></h5>
+                        }
+                        else
+                        {
+                            <h5>@item.Product.Price.ToString("N2") CZK</h5>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Product.DiscountPercentage > 0)
+                        {
+                            <h5 class="text-success">@item.Product.DiscountPercentage %</h5>
+                        }
+                        else
+                        {
+                            <h5> - </h5>
+                        }
+                    </td>
+                    <td>
+                        <h5>@item.Value</h5>
+                    </td>
+                </tr>
+            }
+        </table>
+
+
+        <hr/>
+
+        <input type="hidden" name="Model.TotalPrice" value="@Model.TotalPrice)" />
+
+        <hr/>
+
+        <div class="row">
+            <h4 class="col-md-2 col-md-offset-1">Final price:</h4>
+            <h4 class="col-md-3 text-primary"><b>@Model.TotalPrice.ToString("N2") CZK</b></h4>
+            <input type="submit" value="Confirm Order" class="btn btn-primary col-md-3 pull-right" name="action:ConfirmOrder" />          
+        </div>
+
+    </div>
+}
+

@@ -1,0 +1,6 @@
+﻿Switching DataAccessLayer requires following simple steps:
+
+I.    Remove reference (from BL and its Tests, which can also be unloaded) to previous DAL project + corresponding infrastructure project and add references to desired DAL.
+II.   Now import missing usings for entire project (via resharper) and remove unused usings to previous DAL.
+III.  Finally go to BusinessLayerInstaller class and call corresponding DAL installer.
+IV.   Launch the web app :)

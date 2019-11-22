@@ -1,0 +1,16 @@
+﻿Setup CI for your BL a DALs:
+
+I.    In visual studio, open Team Explorer, navigate to Visual Studio Team Services.
+II.   Go to current project dashboard -> Build and Release -> .NET Desktop, than click on Apply.
+III.  You are now located in the build process configuration, where you can setup your build pipeline, first set the Default Agent Queue combo box to: "Hosted VS2017" which means TFS will take care of the project build part, NuGet restore and also test run.
+IV.   In the "Parameters" section below, pick your .sln file via explorer.
+V.    If you use test framework like assumed NUnit, follow steps V.a) - V.d) other options are available at: http://bartwullems.blogspot.cz/2015/10/team-foundation-server-2015enable-nunit.html
+V.a)  Go back to VS -> Extensions and updates -> Online -> Testing -> find NUnitTestAdapter 3.x and click install.
+V.b)  After installing NUnitTestAdapter 3.x, obtain its .vsix file (from: https://marketplace.visualstudio.com/items?itemName=NUnitDevelopers.NUnit3TestAdapter)
+V.c)  Rename the file extension from .vsix to .zip and extract its contents to created folder: <Your project root directory>\NUnitTestAdapter
+V.d)  Go back to build process configuration, select the VsTest tab on the left side and scroll down to textbox named: "Path to custom test adapters", paste there following path: $(Build.SourcesDirectory)\NUnitTestAdapter
+VI.   Now you have setup all the essentials within the build pipeline, click on "Save & Queue" to test if the configuration was made properly
+VII.  If all went well, go to build process configuration and select Triggers tab where you can switch Continuous Integration on to automate the build pipeline with every check-in. Note that you get 4h/month build time per project for free.
+VIII. You can inspect your build and test result in Build & Release section in Team Services (you may add it to your project dashboard), also you can inspect it from VS: Team Explorer -> Builds, clicking on the concrete build will redirect you to TFS site, with detailed information about passed/failed tests and so on.
+IX.   To receive notifications (for instance when build is broken), go to: Team Explorer (Home) -> Settings tab -> Project Alerts -> New+ -> click on: "A Build Failes" -> Next -> setup email adresses and other stuff -> Finish.
+

@@ -1,0 +1,90 @@
+﻿@using DemoEshop.BusinessLayer.DataTransferObjects.Enums
+@model DemoEshop.BusinessLayer.DataTransferObjects.ProductDto
+
+@{
+    ViewBag.Title = "ProductDetailView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <img src="@Model.ProductImgUri" class="img-fluid">
+    </div>
+    <div class="col-sm-8">
+        <h3>@Html.DisplayFor(model => model.Name)</h3>
+
+        <div class="row text-justify top-buffer-small col-sm-12">@Html.DisplayFor(model => model.Description)</div>
+
+        <div class="row top-buffer-small col-sm-12">
+            @{
+                if (Model.DiscountPercentage > 0)
+                {
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span>Former price: <strong class="text-danger"><del>@Model.Price.ToString("N2"),- CZK</del></strong></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <p>
+                                <span>Discount: <strong class="text-success">@Model.DiscountPercentage%</strong></span>
+                            </p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    if (Model.DiscountType == DiscountType.Value3Plus1)
+                    {
+                        <div class="row container">
+                            <div class="col-md-12">
+                                <p>
+                                    Buy 3x @Model.Name for
+                                    <strong class="text-primary">@Model.Price.ToString("N2"),- CZK </strong>
+                                    and get next one for
+                                    <strong class="text-success">FREE</strong>
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row container">
+                            <div class="col-md-12">
+                                <p>
+                                    <strong class="text-primary">@Model.Price.ToString("N2"),- CZK</strong>
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+                }
+            }
+        </div>
+
+        <div class="row top-buffer-small">
+            @{
+                if (Model.CurrentlyAvailableUnits.HasValue && Model.CurrentlyAvailableUnits.Value > 0)
+                {
+                    <div class="col-sm-8">
+                        <span>Available units: <strong class="text-success">@Model.CurrentlyAvailableUnits</strong></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="button" class="btn btn-primary" value="Add to shopping cart" onclick="location.href = '@Url.Action("AddItem", "ShoppingCart", new {id = Model.Id})'" />
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-12">
+                        <strong class="text-danger">No units are currently available</strong>
+                    </div>
+                }
+            }
+        </div>
+
+        <p>
+            @Html.ActionLink("Back to all products", "Index")
+        </p>
+    </div>
+</div>
+
+
+

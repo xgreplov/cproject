@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to PV226 Demo eshop</h1>
+    @if (User.IsInRole("Administrator"))
+    {
+        <p class="lead">You can manage our products and see info about customers</p>
+    }
+    else
+    {
+        <p class="lead">Check out our offer at products section...</p>
+    }    
+</div>

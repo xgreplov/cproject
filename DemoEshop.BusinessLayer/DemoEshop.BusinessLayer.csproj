@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{636F486E-19F9-4C48-B80C-F676C1DA6BF9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DemoEshop.BusinessLayer</RootNamespace>
+    <AssemblyName>DemoEshop.BusinessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.4.0.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.Disposables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.Disposables.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Disposables.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\BusinessLayerInstaller.cs" />
+    <Compile Include="Config\MappingConfig.cs" />
+    <Compile Include="DataTransferObjects\CategoryDto.cs" />
+    <Compile Include="DataTransferObjects\Common\DtoBase.cs" />
+    <Compile Include="DataTransferObjects\Common\FilterDtoBase.cs" />
+    <Compile Include="DataTransferObjects\Common\QueryResultDto.cs" />
+    <Compile Include="DataTransferObjects\CustomerDto.cs" />
+    <Compile Include="DataTransferObjects\Enums\DiscountType.cs" />
+    <Compile Include="DataTransferObjects\Filters\CategoryFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\CustomerFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\RatingFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\RateSongFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\ProductFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\StockFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\UserFilterDto.cs" />
+    <Compile Include="DataTransferObjects\OrderCreateDto.cs" />
+    <Compile Include="DataTransferObjects\RatingDto.cs" />
+    <Compile Include="DataTransferObjects\RateSongDto.cs" />
+    <Compile Include="DataTransferObjects\ProductDto.cs" />
+    <Compile Include="DataTransferObjects\ProductReservationDto.cs" />
+    <Compile Include="DataTransferObjects\UserCreateDto.cs" />
+    <Compile Include="DataTransferObjects\UserDto.cs" />
+    <Compile Include="Facades\Common\FacadeBase.cs" />
+    <Compile Include="Facades\OrderFacade.cs" />
+    <Compile Include="Facades\ProductFacade.cs" />
+    <Compile Include="Facades\CustomerFacade.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryObjects\CategoryQueryObject.cs" />
+    <Compile Include="QueryObjects\CustomerQueryObject.cs" />
+    <Compile Include="QueryObjects\OrderItemQueryObject.cs" />
+    <Compile Include="QueryObjects\OrderQueryObject.cs" />
+    <Compile Include="QueryObjects\ProductQueryObject.cs" />
+    <Compile Include="QueryObjects\Common\QueryObjectBase.cs" />
+    <Compile Include="QueryObjects\UserQueryObject.cs" />
+    <Compile Include="Services\Categories\CategoryService.cs" />
+    <Compile Include="Services\Categories\ICategoryService.cs" />
+    <Compile Include="Services\Checkout\CheckoutService.cs" />
+    <Compile Include="Services\Checkout\ICheckoutService.cs" />
+    <Compile Include="Services\Checkout\PriceCalculators\IPriceCalculator.cs" />
+    <Compile Include="Services\Checkout\PriceCalculators\PercentagePriceCalculator.cs" />
+    <Compile Include="Services\Checkout\PriceCalculators\Quantity3Plus1PriceCalculator.cs" />
+    <Compile Include="Services\Common\CrudQueryServiceBase.cs" />
+    <Compile Include="Services\Customers\CustomerService.cs" />
+    <Compile Include="Services\Customers\ICustomerService.cs" />
+    <Compile Include="Services\Products\IProductService.cs" />
+    <Compile Include="Services\Reservation\IReservationService.cs" />
+    <Compile Include="Services\Sales\ISalesService.cs" />
+    <Compile Include="Services\Sales\SalesService.cs" />
+    <Compile Include="Services\Products\ProductService.cs" />
+    <Compile Include="Services\Common\ServiceBase.cs" />
+    <Compile Include="Services\Reservation\ReservationService.cs" />
+    <Compile Include="Services\Users\IUserService.cs" />
+    <Compile Include="Services\Users\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DemoEshop.DataAccessLayer.EntityFramework\DemoEshop.DataAccessLayer.EntityFramework.csproj">
+      <Project>{c431862d-abc8-4d5b-bf2f-6b9305c45425}</Project>
+      <Name>DemoEshop.DataAccessLayer.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemoEshop.Infrastructure.EntityFramework\DemoEshop.Infrastructure.EntityFramework.csproj">
+      <Project>{32143fc3-e14a-40c2-81e3-d0c04facad95}</Project>
+      <Name>DemoEshop.Infrastructure.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemoEshop.Infrastructure\DemoEshop.Infrastructure.csproj">
+      <Project>{8f781223-7b19-49ea-8bac-f0120dd394fa}</Project>
+      <Name>DemoEshop.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\Tutorials\TFSBusinessLayerContinousIntegrationConfig.txt" />
+    <Content Include="Config\Tutorials\DALSwitchConfig.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+</Project>

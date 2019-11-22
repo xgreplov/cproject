@@ -1,0 +1,23 @@
+﻿@model DemoEshop.PresentationLayer.Models.ShoppingCart.OrderConfirmationViewModel
+
+@{
+    ViewBag.Title = "OrderConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-success">Your Order has been successfully processed.</h2>
+
+<h4>Ordered by: @Model.Customer.FirstName @Model.Customer.LastName</h4>
+
+<h4>Address: @Model.Customer.Address</h4>
+
+<h4>Issued: @Model.Order.Issued</h4>
+
+<h4>Total cash on delivery: @Model.Order.TotalPrice.ToString("N2") CZK</h4>
+
+<h5>Thank you for choosing demo e-shop</h5>
+
+
+@Html.ActionLink("Return to products page", "Index", "Products")
+
+
