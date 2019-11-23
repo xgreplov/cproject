@@ -8,5 +8,7 @@ namespace DemoEshop.BusinessLayer.DataTransferObjects.Filters
         public Guid RateSongId { get; set; }
 
         public Guid SongId { get; set; }
+
+        public Guid UserId { get; set; }
     }
 }
