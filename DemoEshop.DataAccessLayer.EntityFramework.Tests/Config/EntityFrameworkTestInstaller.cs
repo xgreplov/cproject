@@ -39,57 +39,50 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.Config
         private static DbContext InitializeDatabase()
         {
             var context = new DemoEshopDbContext();
-            context.Products.RemoveRange(context.Products);
-            context.Categories.RemoveRange(context.Categories);
+            context.Songs.RemoveRange(context.Songs);
+            context.Albums.RemoveRange(context.Albums);
             context.SaveChanges();
 
-            var smartphones = new Category { Id = Guid.Parse("aa01dc64-5c07-40fe-a916-175165b9b90f"), Name = "Smartphones", Parent = null, ParentId = null };
+            var youngblood = new Album { Id = Guid.Parse("aa01dc64-5c07-40fe-a916-175165b9b90f"), Name = "YoungBlood", Genre = Genre.PopRock, ArtistId = artist.Id };
 
-            var android = new Category { Id = Guid.Parse("aa02dc64-5c07-40fe-a916-175165b9b90f"), Name = "Android", Parent = smartphones, ParentId = smartphones.Id };
+            var soundsGoodFeelsGood = new Album { Id = Guid.Parse("aa02dc64-5c07-40fe-a916-175165b9b90f"), Name = "Sounds Good Feels Good", Genre = Genre.PopRock, ArtistId = artist.Id };
 
-            var iOS = new Category { Id = Guid.Parse("aa04dc64-5c07-40fe-a916-175165b9b90f"), Name = "iOS", Parent = smartphones, ParentId = smartphones.Id };
+            var fiveSOS = new Album { Id = Guid.Parse("aa03dc64-5c07-40fe-a916-175165b9b90f"), Name = "5 Seconds of Summer", Genre = Genre.PopRock, ArtistId = artist.Id };
 
-            context.Categories.AddOrUpdate(category => category.Id, smartphones, android, iOS);
+            context.Albums.AddOrUpdate(album => album.Id, youngblood, soundsGoodFeelsGood, fiveSOS);
 
-            var samsungGalaxyJ7 = new Product
+            var teeth = new Song
             {
                 Id = Guid.Parse("aa05dc64-5c07-40fe-a916-175165b9b90f"),
-                Category = android,
-                CategoryId = android.Id,
-                Description = "Designed with all the features you love, the Samsung Galaxy J7 is the smartphone you’ve been waiting for. Watching a movie or reading a book is more enjoyable on the large 5.5 HD Super AMOLED display.And while the 13MP main camera captures clearer photos, the 5MP front camera gives you more flattering selfies in any light. Best of all, the long-lasting battery means the Samsung Galaxy J7 keeps up with you.",
-                DiscountPercentage = 5,
-                DiscountType = DiscountType.Percentage,
-                Name = "Samsung Galaxy J7",
-                Price = 7490,
-                ProductImgUri = @"\Content\Images\Products\samsung_galaxy_J7.jpeg"
+                Album = youngblood,
+                AlbumId = youngblood.Id,
+                Name = "Teeth",
+                Lyrics = "Fight so dirty, but your love so sweet, Talk so pretty, but your heart got teeth, Late night devil, put your hands on me, And never, never, never ever let go, Fight so dirty, but your love so sweet, Talk so pretty, but your heart got teeth, Late night devil, put your hands on me, And never, never, never ever let go",
+                SongInfo = "a bass-heavy track about the dark highs and lows of a relationship",
             };
-            var lgG5 = new Product
+            var valentine = new Song
             {
                 Id = Guid.Parse("aa06dc64-5c07-40fe-a916-175165b9b90f"),
-                Category = android,
-                CategoryId = android.Id,
-                Description = "LG G5 comes with a 5.30-inch touchscreen display with a resolution of 1440 pixels by 2560 pixels at a PPI of 554 pixels per inch. The LG G5 is powered by 2.15GHz quad - core Qualcomm Snapdragon 820 processor and it comes with 4GB of RAM.The phone packs 32GB of internal storage that can be expanded up to 200GB via a microSD card.As far as the cameras are concerned, the LG G5 packs a 16-megapixel primary camera on the rear and a 8-megapixel front shooter for selfies. The LG G5 runs Android 6.0.1 and is powered by a 2800mAh removable battery.It measures 149.40 x 73.90 x 7.70 (height x width x thickness) and weighs 159.00 grams. The LG G5 is a dual SIM(GSM and GSM) smartphone that accepts two Nano-SIM.Connectivity options include Wi-Fi, GPS, Bluetooth, NFC, FM, 3G, 4G(with support for Band 40 used by some LTE networks in India). Sensors on the phone include Proximity sensor, Ambient light sensor, Accelerometer, and Gyroscope.",
-                DiscountPercentage = 0,
-                DiscountType = DiscountType.Percentage,
-                Name = "LG G5",
-                Price = 15490,
-                ProductImgUri = @"\Content\Images\Products\LG-G5.jpg"
+                Album = youngblood,
+                AlbumId = youngblood.Id,
+                Name = "Valentine",
+                Lyrics = "I can take you out, oh, oh, We can kill some time, stay home, Throw balloons, teddy bears and the chocolate eclairs away, Got nothing but love for you, fall more in love every day, Valentine, valentine",
+                SongInfo = "first performed live at the iHeartRadio Music Awards Fan Army Celebration on March 10th 2018",
             };
-            var htc10 = new Product
+
+            var amnesia = new Song
             {
-                Id = Guid.Parse("aa09dc64-5c07-40fe-a916-175165b9b90f"),
-                Category = android,
-                CategoryId = android.Id,
-                Description = "HTC 10 smartphone was launched in April 2016. The phone comes with a 5.20-inch touchscreen display with a resolution of 1440 pixels by 2560 pixels at a PPI of 564 pixels per inch. The HTC 10 is powered by 1.6GHz quad - core Qualcomm Snapdragon 820 processor and it comes with 4GB of RAM.The phone packs 32GB of internal storage that can be expanded up to 2000GB via a microSD card. As far as the cameras are concerned, the HTC 10 packs a 12-Ultrapixel primary camera on the rear and a 5-megapixel front shooter for selfies.The HTC 10 runs Android 6 and is powered by a 3000mAh non removable battery.It measures 145.90 x 71.90 x 9.00 (height x width x thickness) and weighs 161.00 grams. The HTC 10 is a single SIM(GSM) smartphone that accepts a Nano-SIM.Connectivity options include Wi-Fi, GPS, Bluetooth, NFC, 4G(with support for Band 40 used by some LTE networks in India). Sensors on the phone include Proximity sensor, Ambient light sensor, Accelerometer, and Gyroscope. ",
-                DiscountPercentage = 0,
-                DiscountType = DiscountType.Percentage,
-                Name = "HTC 10",
-                Price = 21990,
-                ProductImgUri = @"\Content\Images\Products\HTC_10.jpg"
+                Id = Guid.Parse("aa07dc64-5c07-40fe-a916-175165b9b90f"),
+                Album = fiveSOS,
+                AlbumId = fiveSOS.Id,
+                Name = "Amnesia",
+                Lyrics = "I remember the day you told me you were leaving, I remember the make-up running down your face, And the dreams you left behind you didn't need them, Like every single wish we ever made, I wish that I could wake up with amnesia, And forget about the stupid little things, Like the way it felt to fall asleep next to you, And the memories I never can escape",
+                SongInfo = "the narrative voice reminisces about his past relationship and the pain of hearing the fact that his ex has ‘moved on’",
             };
-            context.Products.AddOrUpdate(samsungGalaxyJ7);
-            context.Products.AddOrUpdate(lgG5);
-            context.Products.AddOrUpdate(htc10);
+
+            context.Songs.AddOrUpdate(teeth);
+            context.Songs.AddOrUpdate(valentine);
+            context.Songs.AddOrUpdate(amnesia);
             
             context.SaveChanges();
 

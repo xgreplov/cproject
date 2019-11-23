@@ -55,13 +55,13 @@
   <ItemGroup>
     <Compile Include="Config\EntityFrameworkInstaller.cs" />
     <Compile Include="DemoEshopDbContext.cs" />
-    <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\Rating.cs" />
+    <Compile Include="Entities\Album.cs" />
+    <Compile Include="Entities\Artist.cs" />
     <Compile Include="Entities\RateSong.cs" />
-    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Song.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Enums\DiscountType.cs" />
+    <Compile Include="Enums\Role.cs" />
+    <Compile Include="Enums\Genre.cs" />
     <Compile Include="Migrations\201709281705170_Initial.cs" />
     <Compile Include="Migrations\201709281705170_Initial.Designer.cs">
       <DependentUpon>201709281705170_Initial.cs</DependentUpon>
@@ -72,16 +72,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DemoEshop.Infrastructure.EntityFramework\DemoEshop.Infrastructure.EntityFramework.csproj">
-      <Project>{32143fc3-e14a-40c2-81e3-d0c04facad95}</Project>
-      <Name>DemoEshop.Infrastructure.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DemoEshop.Infrastructure\DemoEshop.Infrastructure.csproj">
-      <Project>{8f781223-7b19-49ea-8bac-f0120dd394fa}</Project>
-      <Name>DemoEshop.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709281705170_Initial.resx">

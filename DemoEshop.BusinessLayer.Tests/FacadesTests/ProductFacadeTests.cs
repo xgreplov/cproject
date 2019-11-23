@@ -34,7 +34,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
                 CurrentlyAvailableUnits = storedAmount,
                 Name = productName
             };
-            var expectedProduct = new Product
+            var expectedProduct = new Song
             {
                 Id = productId,
                 StoredUnits = storedAmount,
@@ -42,9 +42,9 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             };
             var mockManager = new FacadeMockManager();
             var productRepositoryMock = mockManager.ConfigureGetRepositoryMock(expectedProduct);
-            var categoryRepositoryMock = mockManager.ConfigureRepositoryMock<Category>();
-            var productQueryMock = mockManager.ConfigureQueryObjectMock<ProductDto, Product, ProductFilterDto>(null);
-            var categoryQueryMock = mockManager.ConfigureQueryObjectMock<CategoryDto, Category, CategoryFilterDto>(null);
+            var categoryRepositoryMock = mockManager.ConfigureRepositoryMock<Album>();
+            var productQueryMock = mockManager.ConfigureQueryObjectMock<ProductDto, Song, ProductFilterDto>(null);
+            var categoryQueryMock = mockManager.ConfigureQueryObjectMock<CategoryDto, Album, CategoryFilterDto>(null);
             var productFacade = await CreateProductFacade(productQueryMock, productRepositoryMock, categoryRepositoryMock, categoryQueryMock);
 
             var actualProductDto = await productFacade.GetProductAsync(productId);
@@ -66,7 +66,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
                 CurrentlyAvailableUnits = storedAmount - reservedAmount,
                 Name = productName
             };
-            var expectedProduct = new Product
+            var expectedProduct = new Song
             {
                 Id = productId,
                 StoredUnits = storedAmount,
@@ -81,9 +81,9 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             };
             var mockManager = new FacadeMockManager();
             var productRepositoryMock = mockManager.ConfigureGetRepositoryMock(expectedProduct);
-            var categoryRepositoryMock = mockManager.ConfigureRepositoryMock<Category>();
-            var productQueryMock = mockManager.ConfigureQueryObjectMock<ProductDto, Product, ProductFilterDto>(null);
-            var categoryQueryMock = mockManager.ConfigureQueryObjectMock<CategoryDto, Category, CategoryFilterDto>(null);
+            var categoryRepositoryMock = mockManager.ConfigureRepositoryMock<Album>();
+            var productQueryMock = mockManager.ConfigureQueryObjectMock<ProductDto, Song, ProductFilterDto>(null);
+            var categoryQueryMock = mockManager.ConfigureQueryObjectMock<CategoryDto, Album, CategoryFilterDto>(null);
             var productFacade = await CreateProductFacade(productQueryMock, productRepositoryMock, categoryRepositoryMock, categoryQueryMock, productReservation);
 
             var actualProductDto = await productFacade.GetProductAsync(productId);
@@ -120,15 +120,15 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
 
 
             var mockManager = new FacadeMockManager();
-            var productRepositoryMock = mockManager.ConfigureRepositoryMock<Product>();
-            var categoryRepositoryMock = mockManager.ConfigureRepositoryMock<Category>();
-            var productQueryMock = mockManager.ConfigureQueryObjectMock<ProductDto, Product, ProductFilterDto>(returnedResult);
-            var categoryQueryMock = mockManager.ConfigureQueryObjectMock<CategoryDto, Category, CategoryFilterDto>(null);
+            var productRepositoryMock = mockManager.ConfigureRepositoryMock<Song>();
+            var categoryRepositoryMock = mockManager.ConfigureRepositoryMock<Album>();
+            var productQueryMock = mockManager.ConfigureQueryObjectMock<ProductDto, Song, ProductFilterDto>(returnedResult);
+            var categoryQueryMock = mockManager.ConfigureQueryObjectMock<CategoryDto, Album, CategoryFilterDto>(null);
             var productFacade = await CreateProductFacade(productQueryMock, productRepositoryMock, categoryRepositoryMock, categoryQueryMock, productReservation);
 
             productQueryMock.Setup(query => query.ExecuteQuery(It.IsAny<ProductFilterDto>())).ReturnsAsync(returnedResult);
             productRepositoryMock.Setup(repo => repo.GetAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(new Product {StoredUnits = storedAmount});
+                .ReturnsAsync(new Song {StoredUnits = storedAmount});
             
             var actualResult = (await productFacade.GetProductsAsync(new ProductFilterDto())).Items;
 
@@ -146,10 +146,10 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
                 };
 
             var mockManager = new FacadeMockManager();
-            var productRepositoryMock = mockManager.ConfigureCreateRepositoryMock<Product>(nameof(Product.CategoryId));
-            var categoryRepositoryMock = mockManager.ConfigureRepositoryMock<Category>();
-            var productQueryMock = mockManager.ConfigureQueryObjectMock<ProductDto, Product, ProductFilterDto>(null);
-            var categoryQueryMock = mockManager.ConfigureQueryObjectMock<CategoryDto, Category, CategoryFilterDto>(returnedResult);
+            var productRepositoryMock = mockManager.ConfigureCreateRepositoryMock<Song>(nameof(Song.CategoryId));
+            var categoryRepositoryMock = mockManager.ConfigureRepositoryMock<Album>();
+            var productQueryMock = mockManager.ConfigureQueryObjectMock<ProductDto, Song, ProductFilterDto>(null);
+            var categoryQueryMock = mockManager.ConfigureQueryObjectMock<CategoryDto, Album, CategoryFilterDto>(returnedResult);
             var productFacade = await CreateProductFacade(productQueryMock, productRepositoryMock, categoryRepositoryMock, categoryQueryMock);
 
             var unused = await productFacade.CreateProductWithCategoryNameAsync(new ProductDto {Id = Guid.NewGuid()}, categoryName);
@@ -157,7 +157,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             Assert.AreEqual(categoryId, mockManager.CapturedCreatedId);
         }
 
-        private static async Task<ProductFacade> CreateProductFacade(Mock<QueryObjectBase<ProductDto, Product, ProductFilterDto, IQuery<Product>>> productQueryMock, Mock<IRepository<Product>> productRepositoryMock, Mock<IRepository<Category>> categoryRepositoryMock, Mock<QueryObjectBase<CategoryDto, Category, CategoryFilterDto, IQuery<Category>>> categoryQueryMock, ProductReservationDto reservation = null)
+        private static async Task<ProductFacade> CreateProductFacade(Mock<QueryObjectBase<ProductDto, Song, ProductFilterDto, IQuery<Song>>> productQueryMock, Mock<IRepository<Song>> productRepositoryMock, Mock<IRepository<Album>> categoryRepositoryMock, Mock<QueryObjectBase<CategoryDto, Album, CategoryFilterDto, IQuery<Album>>> categoryQueryMock, ProductReservationDto reservation = null)
         {
             var uowMock = FacadeMockManager.ConfigureUowMock();
             var mapperMock = FacadeMockManager.ConfigureRealMapper();

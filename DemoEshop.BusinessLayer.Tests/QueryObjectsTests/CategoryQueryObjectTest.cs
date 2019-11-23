@@ -23,11 +23,11 @@ namespace DemoEshop.BusinessLayer.Tests.QueryObjectsTests
             var expectedPredicate = new CompositePredicate(
                 new List<IPredicate>
                 {
-                    new SimplePredicate(nameof(Category.Name), ValueComparingOperator.Equal, desiredName1),
-                    new SimplePredicate(nameof(Category.Name), ValueComparingOperator.Equal, desiredName2)
+                    new SimplePredicate(nameof(Album.Name), ValueComparingOperator.Equal, desiredName1),
+                    new SimplePredicate(nameof(Album.Name), ValueComparingOperator.Equal, desiredName2)
                 }, LogicalOperator.OR);
-            var mapperMock = mockManager.ConfigureMapperMock<Category, CategoryDto, CategoryFilterDto>();
-            var queryMock = mockManager.ConfigureQueryMock<Category>();
+            var mapperMock = mockManager.ConfigureMapperMock<Album, CategoryDto, CategoryFilterDto>();
+            var queryMock = mockManager.ConfigureQueryMock<Album>();
             var categoryQueryObject = new CategoryQueryObject(mapperMock.Object, queryMock.Object);
 
             var unused = await categoryQueryObject.ExecuteQuery(new CategoryFilterDto { Names = new []{desiredName1, desiredName2}});

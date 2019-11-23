@@ -29,7 +29,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             var customerId = Guid.NewGuid();
             const int storedAmount = 10;
             const int reservedAmount = 3;
-            var returnedProduct = new Product{ Id = productId, StoredUnits = storedAmount };
+            var returnedProduct = new Song{ Id = productId, StoredUnits = storedAmount };
             var returnedProductDto = new ProductDto { Id = productId, StoredUnits = storedAmount };
             var OrderCreateDto = new OrderCreateDto
             {
@@ -40,8 +40,8 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
                 }
             };
             var mockManager = new FacadeMockManager();
-            var productRepositoryMock = mockManager.ConfigureGetAndUpdateRepositoryMock(returnedProduct, nameof(Product.StoredUnits));
-            var customerRepositoryMock = mockManager.ConfigureGetRepositoryMock(new Customer{Id = customerId});
+            var productRepositoryMock = mockManager.ConfigureGetAndUpdateRepositoryMock(returnedProduct, nameof(Song.StoredUnits));
+            var customerRepositoryMock = mockManager.ConfigureGetRepositoryMock(new Artist{Id = customerId});
             var OrderRepositoryMock = mockManager.ConfigureCreateRepositoryMock<Rating>(nameof(Rating.CustomerId));
             var RateSongRepositoryMock = mockManager.ConfigureRepositoryMock<RateSong>();
             var OrderQueryMock = mockManager.ConfigureQueryObjectMock<RatingDto, Rating, RatingFilterDto>(null);
@@ -71,7 +71,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             const int storedAmount = 100;
             const int reservedAmount = 1;
             const int numberOfReservations = 10;
-            var returnedProduct = new Product { Id = productId, StoredUnits = storedAmount };
+            var returnedProduct = new Song { Id = productId, StoredUnits = storedAmount };
             var returnedProductDto = new ProductDto { Id = productId, StoredUnits = storedAmount };
             var OrderCreateDto = new OrderCreateDto
             {
@@ -83,8 +83,8 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             };
             
             var mockManager = new FacadeMockManager();
-            var productRepositoryMock = mockManager.ConfigureGetAndUpdateRepositoryMock(returnedProduct, nameof(Product.StoredUnits));
-            var customerRepositoryMock = mockManager.ConfigureGetRepositoryMock(new Customer { Id = customerId });
+            var productRepositoryMock = mockManager.ConfigureGetAndUpdateRepositoryMock(returnedProduct, nameof(Song.StoredUnits));
+            var customerRepositoryMock = mockManager.ConfigureGetRepositoryMock(new Artist { Id = customerId });
             var OrderRepositoryMock = mockManager.ConfigureCreateRepositoryMock<Rating>(nameof(Rating.CustomerId));
             var RateSongRepositoryMock = mockManager.ConfigureRepositoryMock<RateSong>();
             var OrderQueryMock = mockManager.ConfigureQueryObjectMock<RatingDto, Rating, RatingFilterDto>(null);
@@ -127,8 +127,8 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             };
 
             var mockManager = new FacadeMockManager();
-            var productRepositoryMock = mockManager.ConfigureRepositoryMock<Product>();
-            var customerRepositoryMock = mockManager.ConfigureRepositoryMock<Customer>();
+            var productRepositoryMock = mockManager.ConfigureRepositoryMock<Song>();
+            var customerRepositoryMock = mockManager.ConfigureRepositoryMock<Artist>();
             var OrderRepositoryMock = mockManager.ConfigureRepositoryMock<Rating>();
             var RateSongRepositoryMock = mockManager.ConfigureRepositoryMock<RateSong>();
             var OrderQueryMock = mockManager.ConfigureQueryObjectMock<RatingDto, Rating, RatingFilterDto>(null);
@@ -153,7 +153,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
         {
             const int storedUnits = 3;
             var productId = Guid.NewGuid();
-            var productRepositoryMock = new FacadeMockManager().ConfigureGetRepositoryMock(new Product { StoredUnits = storedUnits });
+            var productRepositoryMock = new FacadeMockManager().ConfigureGetRepositoryMock(new Song { StoredUnits = storedUnits });
             var productFacade = CreateOrderFacadeForReservationTesting(productRepositoryMock);
             var actualAvaiableUnits = await productFacade.GetCurrentlyAvailableUnitsAsync(productId);
             Assert.AreEqual(storedUnits, actualAvaiableUnits);
@@ -173,7 +173,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
                 Expiration = DateTime.Now.Add(new TimeSpan(1,0,0)),
                 ReservedAmount = reservedAmount
             };
-            var productRepositoryMock = new FacadeMockManager().ConfigureGetRepositoryMock(new Product{StoredUnits = storedUnits });
+            var productRepositoryMock = new FacadeMockManager().ConfigureGetRepositoryMock(new Song{StoredUnits = storedUnits });
             var productFacade = CreateOrderFacadeForReservationTesting(productRepositoryMock);
             await productFacade.ReserveProductAsync(productReservation);
             var actualReservedUnits = storedUnits - await productFacade.GetCurrentlyAvailableUnitsAsync(productId);
@@ -194,7 +194,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
                 Expiration = DateTime.Now.Add(new TimeSpan(1, 0, 0)),
                 ReservedAmount = reservedAmount
             };
-            var productRepositoryMock = new FacadeMockManager().ConfigureGetRepositoryMock(new Product { StoredUnits = storedUnits });
+            var productRepositoryMock = new FacadeMockManager().ConfigureGetRepositoryMock(new Song { StoredUnits = storedUnits });
             var productFacade = CreateOrderFacadeForReservationTesting(productRepositoryMock);
 
             await productFacade.ReserveProductAsync(productReservation);
@@ -210,7 +210,7 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             const int OrderedAmount = 3;
             const int storedUnits = 7;
             var productId = Guid.NewGuid();
-            var productRepositoryMock = new FacadeMockManager().ConfigureGetRepositoryMock(new Product { StoredUnits = storedUnits });
+            var productRepositoryMock = new FacadeMockManager().ConfigureGetRepositoryMock(new Song { StoredUnits = storedUnits });
             var productFacade = CreateOrderFacadeForReservationTesting(productRepositoryMock);
 
             await productFacade.OrderProductFromDistributorAsync(productId, OrderedAmount);
@@ -219,16 +219,16 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             Assert.AreEqual(storedUnits + OrderedAmount, actualStoredUnits);
         }
 
-        private static OrderFacade CreateOrderFacadeForReservationTesting(Mock<IRepository<Product>> productRepositoryMock = null)
+        private static OrderFacade CreateOrderFacadeForReservationTesting(Mock<IRepository<Song>> productRepositoryMock = null)
         {
             var uowMock = FacadeMockManager.ConfigureUowMock();
             var mapper = FacadeMockManager.ConfigureRealMapper();
-            var reservationService = new ReservationService(mapper, productRepositoryMock?.Object ?? new Mock<IRepository<Product>>().Object);
+            var reservationService = new ReservationService(mapper, productRepositoryMock?.Object ?? new Mock<IRepository<Song>>().Object);
             var OrderFacade = new OrderFacade(uowMock.Object, null, null, reservationService);
             return OrderFacade;
         }
 
-        private static OrderFacade CreateOrderFacade(Mock<IRepository<Product>> productRepositoryMock, Mock<QueryObjectBase<RateSongDto, RateSong, RateSongFilterDto, IQuery<RateSong>>> RateSongQueryMock, Mock<QueryObjectBase<RatingDto, Rating, RatingFilterDto, IQuery<Rating>>> OrderQueryMock, Mock<IRepository<Rating>> OrderRepositoryMock, Mock<IRepository<RateSong>> RateSongRepositoryMock, Mock<IRepository<Customer>> customerRepositoryMock, ReservationService productReservationService = null)
+        private static OrderFacade CreateOrderFacade(Mock<IRepository<Song>> productRepositoryMock, Mock<QueryObjectBase<RateSongDto, RateSong, RateSongFilterDto, IQuery<RateSong>>> RateSongQueryMock, Mock<QueryObjectBase<RatingDto, Rating, RatingFilterDto, IQuery<Rating>>> OrderQueryMock, Mock<IRepository<Rating>> OrderRepositoryMock, Mock<IRepository<RateSong>> RateSongRepositoryMock, Mock<IRepository<Artist>> customerRepositoryMock, ReservationService productReservationService = null)
         {
             var uowMock = FacadeMockManager.ConfigureUowMock();
             var mapper = FacadeMockManager.ConfigureRealMapper();

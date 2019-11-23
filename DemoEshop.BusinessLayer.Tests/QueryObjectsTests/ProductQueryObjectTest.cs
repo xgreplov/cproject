@@ -20,9 +20,9 @@ namespace DemoEshop.BusinessLayer.Tests.QueryObjectsTests
         public async Task ApplyWhereClause_SimpleFilterWithMinimalPrice_ReturnsCorrectSimplePredicate()
         {
             var mockManager = new QueryMockManager();
-            var expectedPredicate = new SimplePredicate(nameof(Product.Price), ValueComparingOperator.GreaterThanOrEqual, 1000m);
-            var mapperMock = mockManager.ConfigureMapperMock<Product, ProductDto, ProductFilterDto>();
-            var queryMock = mockManager.ConfigureQueryMock<Product>();
+            var expectedPredicate = new SimplePredicate(nameof(Song.Price), ValueComparingOperator.GreaterThanOrEqual, 1000m);
+            var mapperMock = mockManager.ConfigureMapperMock<Song, ProductDto, ProductFilterDto>();
+            var queryMock = mockManager.ConfigureQueryMock<Song>();
             var productQueryObject = new ProductQueryObject(mapperMock.Object, queryMock.Object);
 
             var unused = await productQueryObject.ExecuteQuery(new ProductFilterDto{MinimalPrice = 1000});
@@ -35,10 +35,10 @@ namespace DemoEshop.BusinessLayer.Tests.QueryObjectsTests
         {
             var mockManager = new QueryMockManager();
             var expectedPredicate = new CompositePredicate(new List<IPredicate>{
-                    new SimplePredicate(nameof(Product.Price), ValueComparingOperator.GreaterThanOrEqual, 1000m),
-                    new SimplePredicate(nameof(Product.Price), ValueComparingOperator.LessThanOrEqual, 3000m)});
-            var mapperMock = mockManager.ConfigureMapperMock<Product, ProductDto, ProductFilterDto>();
-            var queryMock = mockManager.ConfigureQueryMock<Product>();
+                    new SimplePredicate(nameof(Song.Price), ValueComparingOperator.GreaterThanOrEqual, 1000m),
+                    new SimplePredicate(nameof(Song.Price), ValueComparingOperator.LessThanOrEqual, 3000m)});
+            var mapperMock = mockManager.ConfigureMapperMock<Song, ProductDto, ProductFilterDto>();
+            var queryMock = mockManager.ConfigureQueryMock<Song>();
             var productQueryObject = new ProductQueryObject(mapperMock.Object, queryMock.Object);
 
             var unused = await productQueryObject.ExecuteQuery(new ProductFilterDto { MinimalPrice = 1000, MaximalPrice = 3000});
@@ -53,10 +53,10 @@ namespace DemoEshop.BusinessLayer.Tests.QueryObjectsTests
             var mockManager = new QueryMockManager();
             var expectedPredicate = new CompositePredicate(new List<IPredicate>{
                 new CompositePredicate(new List<IPredicate>{
-                    new SimplePredicate(nameof(Product.CategoryId), ValueComparingOperator.Equal, categoryIds.First())}, LogicalOperator.OR),
-                new SimplePredicate(nameof(Product.Price), ValueComparingOperator.GreaterThanOrEqual, 7000m)});
-            var mapperMock = mockManager.ConfigureMapperMock<Product, ProductDto, ProductFilterDto>();
-            var queryMock = mockManager.ConfigureQueryMock<Product>();
+                    new SimplePredicate(nameof(Song.CategoryId), ValueComparingOperator.Equal, categoryIds.First())}, LogicalOperator.OR),
+                new SimplePredicate(nameof(Song.Price), ValueComparingOperator.GreaterThanOrEqual, 7000m)});
+            var mapperMock = mockManager.ConfigureMapperMock<Song, ProductDto, ProductFilterDto>();
+            var queryMock = mockManager.ConfigureQueryMock<Song>();
             var productQueryObject = new ProductQueryObject(mapperMock.Object, queryMock.Object);
 
             var unused = await productQueryObject.ExecuteQuery(new ProductFilterDto { MinimalPrice = 7000, CategoryIds = categoryIds });
@@ -72,15 +72,15 @@ namespace DemoEshop.BusinessLayer.Tests.QueryObjectsTests
             var mockManager = new QueryMockManager();
             var expectedPredicate = new CompositePredicate(new List<IPredicate>{
                 new CompositePredicate(new List<IPredicate>{
-                    new SimplePredicate(nameof(Product.CategoryId), ValueComparingOperator.Equal, categoryIds.First()),
-                    new SimplePredicate(nameof(Product.CategoryId), ValueComparingOperator.Equal, categoryIds.Last())}, LogicalOperator.OR),
-                new SimplePredicate(nameof(Product.Name), ValueComparingOperator.StringContains, searchedName),
+                    new SimplePredicate(nameof(Song.CategoryId), ValueComparingOperator.Equal, categoryIds.First()),
+                    new SimplePredicate(nameof(Song.CategoryId), ValueComparingOperator.Equal, categoryIds.Last())}, LogicalOperator.OR),
+                new SimplePredicate(nameof(Song.Name), ValueComparingOperator.StringContains, searchedName),
                 new CompositePredicate(new List<IPredicate>{
-                    new SimplePredicate(nameof(Product.Price), ValueComparingOperator.GreaterThanOrEqual, 1000m),
-                    new SimplePredicate(nameof(Product.Price), ValueComparingOperator.LessThanOrEqual, 3000m)})
+                    new SimplePredicate(nameof(Song.Price), ValueComparingOperator.GreaterThanOrEqual, 1000m),
+                    new SimplePredicate(nameof(Song.Price), ValueComparingOperator.LessThanOrEqual, 3000m)})
             });
-            var mapperMock = mockManager.ConfigureMapperMock<Product, ProductDto, ProductFilterDto>();
-            var queryMock = mockManager.ConfigureQueryMock<Product>();
+            var mapperMock = mockManager.ConfigureMapperMock<Song, ProductDto, ProductFilterDto>();
+            var queryMock = mockManager.ConfigureQueryMock<Song>();
             var productQueryObject = new ProductQueryObject(mapperMock.Object, queryMock.Object);
 
             var unused = await productQueryObject.ExecuteQuery(new ProductFilterDto { MinimalPrice = 1000, MaximalPrice = 3000, SearchedName = searchedName, CategoryIds = categoryIds});

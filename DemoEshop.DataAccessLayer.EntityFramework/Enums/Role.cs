@@ -3,8 +3,8 @@
     /// <summary>
     /// Represents type of discount for corresponding product
     /// </summary>
-    public enum DiscountType
+    public enum Role
     {
-        Percentage, Value3Plus1
+        Admin, Editor, Basic
     }
 }

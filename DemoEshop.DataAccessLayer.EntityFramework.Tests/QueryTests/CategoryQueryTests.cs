@@ -23,17 +23,17 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.QueryTests
         [Test]
         public async Task ExecuteAsync_SimpleWherePredicate_ReturnsCorrectQueryResult()
         {
-            QueryResult<Category> actualQueryResult;
-            var categoryQuery = Initializer.Container.Resolve<IQuery<Category>>();
-            var expectedQueryResult = new QueryResult<Category>(new List<Category>{new Category
+            QueryResult<Album> actualQueryResult;
+            var categoryQuery = Initializer.Container.Resolve<IQuery<Album>>();
+            var expectedQueryResult = new QueryResult<Album>(new List<Album>{new Album
             {
                 Id = androidCategoryId, Name = "Android", ParentId = smartphonesCategoryId
-            }, new Category
+            }, new Album
             {
                 Id = iOSCategoryId, Name = "iOS", ParentId = smartphonesCategoryId
             }}, 2);
             
-            var predicate = new SimplePredicate(nameof(Category.ParentId), ValueComparingOperator.Equal, smartphonesCategoryId);
+            var predicate = new SimplePredicate(nameof(Album.ParentId), ValueComparingOperator.Equal, smartphonesCategoryId);
             using (unitOfWorkProvider.Create())
             {
                 actualQueryResult = await categoryQuery.Where(predicate).ExecuteAsync();
@@ -45,20 +45,20 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.QueryTests
         [Test]
         public async Task ExecuteAsync_ComplexWherePredicate_ReturnsCorrectQueryResult()
         {
-            QueryResult<Category> actualQueryResult;
-            var categoryQuery = Initializer.Container.Resolve<IQuery<Category>>();
-            var expectedQueryResult = new QueryResult<Category>(new List<Category>{new Category
+            QueryResult<Album> actualQueryResult;
+            var categoryQuery = Initializer.Container.Resolve<IQuery<Album>>();
+            var expectedQueryResult = new QueryResult<Album>(new List<Album>{new Album
             {
                 Id = androidCategoryId, Name = "Android", ParentId = smartphonesCategoryId
             }}, 1);
             
             var predicate = new CompositePredicate(new List<IPredicate>
             {
-                new SimplePredicate(nameof(Category.ParentId), ValueComparingOperator.Equal, smartphonesCategoryId),
+                new SimplePredicate(nameof(Album.ParentId), ValueComparingOperator.Equal, smartphonesCategoryId),
                 new CompositePredicate(new List<IPredicate>
                 {
-                    new SimplePredicate(nameof(Category.Name), ValueComparingOperator.Equal, "Android"),
-                    new SimplePredicate(nameof(Category.Name), ValueComparingOperator.Equal, "Windows 10")
+                    new SimplePredicate(nameof(Album.Name), ValueComparingOperator.Equal, "Android"),
+                    new SimplePredicate(nameof(Album.Name), ValueComparingOperator.Equal, "Windows 10")
                 }, LogicalOperator.OR)
             });
             using (unitOfWorkProvider.Create())
@@ -72,22 +72,22 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.QueryTests
         [Test]
         public async Task ExecuteAsync_RatingAllCategoriesByName_ReturnsCorrectlyOrderedQueryResult()
         {
-            QueryResult<Category> actualQueryResult;
-            var categoryQuery = Initializer.Container.Resolve<IQuery<Category>>();
-            var expectedQueryResult = new QueryResult<Category>(new List<Category>{new Category
+            QueryResult<Album> actualQueryResult;
+            var categoryQuery = Initializer.Container.Resolve<IQuery<Album>>();
+            var expectedQueryResult = new QueryResult<Album>(new List<Album>{new Album
             {
                 Id = androidCategoryId, Name = "Android", ParentId = smartphonesCategoryId
-            }, new Category
+            }, new Album
             {
                 Id = iOSCategoryId, Name = "iOS", ParentId = smartphonesCategoryId
-            }, new Category
+            }, new Album
             {
                 Id = smartphonesCategoryId.Value, Name = "Smartphones", ParentId = null
             }}, 3);
 
             using (unitOfWorkProvider.Create())
             {
-                actualQueryResult = await categoryQuery.SortBy(nameof(Category.Name), true).ExecuteAsync();
+                actualQueryResult = await categoryQuery.SortBy(nameof(Album.Name), true).ExecuteAsync();
             }
 
             Assert.AreEqual(actualQueryResult, expectedQueryResult);
@@ -98,9 +98,9 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.QueryTests
         {
             const int pageSize = 2;
             const int requestedPage = 2;
-            QueryResult<Category> actualQueryResult;
-            var categoryQuery = Initializer.Container.Resolve<IQuery<Category>>();
-            var expectedQueryResult = new QueryResult<Category>(new List<Category>{new Category
+            QueryResult<Album> actualQueryResult;
+            var categoryQuery = Initializer.Container.Resolve<IQuery<Album>>();
+            var expectedQueryResult = new QueryResult<Album>(new List<Album>{new Album
             {
                 Id = iOSCategoryId, Name = "iOS", ParentId = smartphonesCategoryId
             }}, 1, pageSize, requestedPage);

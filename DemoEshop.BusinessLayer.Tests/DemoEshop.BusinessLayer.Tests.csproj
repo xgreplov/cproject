@@ -80,21 +80,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\DemoEshop.BusinessLayer\DemoEshop.BusinessLayer.csproj">
-      <Project>{636f486e-19f9-4c48-b80c-f676c1da6bf9}</Project>
-      <Name>DemoEshop.BusinessLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DemoEshop.DataAccessLayer.EntityFramework\DemoEshop.DataAccessLayer.EntityFramework.csproj">
       <Project>{c431862d-abc8-4d5b-bf2f-6b9305c45425}</Project>
       <Name>DemoEshop.DataAccessLayer.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DemoEshop.Infrastructure.EntityFramework\DemoEshop.Infrastructure.EntityFramework.csproj">
-      <Project>{32143fc3-e14a-40c2-81e3-d0c04facad95}</Project>
-      <Name>DemoEshop.Infrastructure.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DemoEshop.Infrastructure\DemoEshop.Infrastructure.csproj">
-      <Project>{8F781223-7B19-49EA-8BAC-F0120DD394FA}</Project>
-      <Name>DemoEshop.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

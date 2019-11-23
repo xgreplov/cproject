@@ -83,14 +83,6 @@
       <Project>{C431862D-ABC8-4D5B-BF2F-6B9305C45425}</Project>
       <Name>DemoEshop.DataAccessLayer.EntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DemoEshop.Infrastructure.EntityFramework\DemoEshop.Infrastructure.EntityFramework.csproj">
-      <Project>{32143FC3-E14A-40C2-81E3-D0C04FACAD95}</Project>
-      <Name>DemoEshop.Infrastructure.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DemoEshop.Infrastructure\DemoEshop.Infrastructure.csproj">
-      <Project>{8f781223-7b19-49ea-8bac-f0120dd394fa}</Project>
-      <Name>DemoEshop.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

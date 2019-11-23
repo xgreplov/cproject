@@ -58,9 +58,9 @@ namespace DemoEshop.BusinessLayer.Tests.FacadesTests
             var mockManager = new FacadeMockManager();
             var uowMock = FacadeMockManager.ConfigureUowMock();
             var mapper = FacadeMockManager.ConfigureRealMapper();
-            var customerRepositoryMock = mockManager.ConfigureRepositoryMock<Customer>();
+            var customerRepositoryMock = mockManager.ConfigureRepositoryMock<Artist>();
             var userRepositoryMock = mockManager.ConfigureRepositoryMock<User>();
-            var customerQueryMock = mockManager.ConfigureQueryObjectMock<CustomerDto, Customer, CustomerFilterDto>(expectedQueryResult);
+            var customerQueryMock = mockManager.ConfigureQueryObjectMock<CustomerDto, Artist, CustomerFilterDto>(expectedQueryResult);
             var userQueryMock = mockManager.ConfigureQueryObjectMock<UserDto, User, UserFilterDto>(null);
             var customerService = new CustomerService(mapper, customerRepositoryMock.Object, customerQueryMock.Object);
             var userService = new UserService(mapper, customerRepositoryMock.Object, userQueryMock.Object);

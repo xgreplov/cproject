@@ -19,14 +19,14 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Entities
         [Range(0, 5)]
         public int Value { get; set; }
 
-        [ForeignKey(nameof(Product))]
-        public Guid ProductId { get; set; }
+        [ForeignKey(nameof(Song))]
+        public Guid SongId { get; set; }
 
-        public virtual Product Product { get; set; }
+        public virtual Song Song { get; set; }
 
-        [ForeignKey(nameof(Rating))]
-        public Guid RatingId { get; set; }
+        [ForeignKey(nameof(User))]
+        public Guid UserId { get; set; }
 
-        public virtual Rating Rating { get; set; }
+        public virtual User User { get; set; }
     }
 }

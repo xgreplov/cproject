@@ -12,7 +12,7 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.RepositoryTests
     {
         private readonly IUnitOfWorkProvider unitOfWorkProvider = Initializer.Container.Resolve<IUnitOfWorkProvider>();
 
-        private readonly IRepository<Category> categoryRepository = Initializer.Container.Resolve<IRepository<Category>>();
+        private readonly IRepository<Album> categoryRepository = Initializer.Container.Resolve<IRepository<Album>>();
 
         private readonly Guid smartphonesCategoryId = Guid.Parse("aa01dc64-5c07-40fe-a916-175165b9b90f");
 
@@ -24,7 +24,7 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.RepositoryTests
         public async Task GetCategoryAsync_AlreadyStoredInDBNoIncludes_ReturnsCorrectCategory()
         {
             // Arrange
-            Category androidCategory;
+            Album androidCategory;
 
             // Act
             using (unitOfWorkProvider.Create())
@@ -39,11 +39,11 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.RepositoryTests
         [Test]
         public async Task GetCategoryAsync_AlreadyStoredInDBWithIncludes_ReturnsCorrectCategoryWithInitializedParent()
         {
-            Category androidCategory;
+            Album androidCategory;
 
             using (unitOfWorkProvider.Create())
             {
-                androidCategory = await categoryRepository.GetAsync(androidCategoryId, nameof(Category.Parent));
+                androidCategory = await categoryRepository.GetAsync(androidCategoryId, nameof(Album.Parent));
             }
 
             Assert.IsTrue(androidCategory.Id.Equals(androidCategoryId) && androidCategory.Parent.Id.Equals(smartphonesCategoryId));
@@ -52,7 +52,7 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.RepositoryTests
         [Test]
         public async Task CreateCategoryAsync_CategoryIsNotPreviouslySeeded_CreatesNewCategory()
         {
-            var windows10Mobile = new Category { Name = "Windows 10", ParentId = smartphonesCategoryId };
+            var windows10Mobile = new Album { Name = "Windows 10", ParentId = smartphonesCategoryId };
 
             using (var uow = unitOfWorkProvider.Create())
             {
@@ -66,8 +66,8 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.RepositoryTests
         [Test]
         public async Task UpdateCategoryAsync_CategoryIsPreviouslySeeded_UpdatesCategory()
         {
-            Category updatedAndroidCategory;
-            var newAndroidCategory = new Category { Id = androidCategoryId, Name = "Updated Name", ParentId = null };
+            Album updatedAndroidCategory;
+            var newAndroidCategory = new Album { Id = androidCategoryId, Name = "Updated Name", ParentId = null };
 
             using (var uow = unitOfWorkProvider.Create())
             {
@@ -82,7 +82,7 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.RepositoryTests
         [Test]
         public async Task DeleteCategoryAsync_CategoryIsPreviouslySeeded_DeletesCategory()
         {
-            Category deletedAndroidCategory;
+            Album deletedAndroidCategory;
 
             using (var uow = unitOfWorkProvider.Create())
             {
