@@ -20,7 +20,7 @@ namespace DemoEshop.BusinessLayer.QueryObjects
             {
                 return query;
             }
-            return query.Where(new SimplePredicate(nameof(RateSong.RatingId), ValueComparingOperator.Equal, filter.RateSongId));
+            return query.Where(new SimplePredicate(nameof(RateSong.SongId), ValueComparingOperator.Equal, filter.SongId));
         }
     }
 }

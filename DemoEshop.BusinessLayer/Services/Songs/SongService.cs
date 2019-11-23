@@ -13,14 +13,14 @@ using DemoEshop.Infrastructure.Query;
 
 namespace DemoEshop.BusinessLayer.Services.Products
 {
-    public class ProductService : CrudQueryServiceBase<Product, ProductDto, ProductFilterDto>, IProductService
+    public class SongService : CrudQueryServiceBase<Song, SongDto, SongFilterDto>, ISongService
     {
-        public ProductService(IMapper mapper, QueryObjectBase<ProductDto, Product, ProductFilterDto, IQuery<Product>> productQuery, IRepository<Product> productRepository)
-            : base(mapper, productRepository, productQuery) { }
+        public SongService(IMapper mapper, QueryObjectBase<SongDto, Song, SongFilterDto, IQuery<Song>> productQuery, IRepository<Song> songRepository)
+            : base(mapper, songRepository, productQuery) { }
         
-        protected override Task<Product> GetWithIncludesAsync(Guid entityId)
+        protected override Task<Song> GetWithIncludesAsync(Guid entityId)
         {
-            return Repository.GetAsync(entityId, nameof(Product.Category));
+            return Repository.GetAsync(entityId, nameof(Song.Album));
         }
 
         /// <summary>
@@ -28,9 +28,9 @@ namespace DemoEshop.BusinessLayer.Services.Products
         /// </summary>
         /// <param name="name">product name</param>
         /// <returns>product with given name</returns>
-        public async Task<ProductDto> GetProductByNameAsync(string name)
+        public async Task<SongDto> GetProductByNameAsync(string name)
         {
-            var queryResult = await Query.ExecuteQuery(new ProductFilterDto { SearchedName = name });
+            var queryResult = await Query.ExecuteQuery(new SongFilterDto { SearchedName = name });
             return queryResult.Items.SingleOrDefault();
         }
 
@@ -39,7 +39,7 @@ namespace DemoEshop.BusinessLayer.Services.Products
         /// </summary>
         /// <param name="filter">The products filter</param>
         /// <returns>Filtered results</returns>
-        public async Task<QueryResultDto<ProductDto, ProductFilterDto>> ListProductsAsync(ProductFilterDto filter)
+        public async Task<QueryResultDto<SongDto, SongFilterDto>> ListProductsAsync(SongFilterDto filter)
         {
             return await Query.ExecuteQuery(filter);
         }

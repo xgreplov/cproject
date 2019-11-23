@@ -17,16 +17,16 @@ namespace DemoEshop.BusinessLayer.Facades
     {
         #region Dependencies
 
-        private readonly ICategoryService categoryService;
-        private readonly IProductService productService;
+        private readonly IAlbumService albumService;
+        private readonly ISongService songService;
         private readonly IReservationService stockReservationService;
 
-        public ProductFacade(IUnitOfWorkProvider unitOfWorkProvider, ICategoryService categoryService, 
-            IProductService productService, IReservationService stockReservationService)
+        public ProductFacade(IUnitOfWorkProvider unitOfWorkProvider, IAlbumService albumService, 
+            ISongService songService, IReservationService stockReservationService)
             : base(unitOfWorkProvider)
         {
-            this.categoryService = categoryService;
-            this.productService = productService;
+            this.albumService = albumService;
+            this.songService = songService;
             this.stockReservationService = stockReservationService;
         }
 
@@ -43,7 +43,7 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                var product = await productService.GetAsync(id);
+                var product = await songService.GetAsync(id);
                 product.CurrentlyAvailableUnits = await stockReservationService.GetCurrentlyAvailableUnits(id);
                 return product;
             }
@@ -58,7 +58,7 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                var product = await productService.GetProductByNameAsync(name);
+                var product = await songService.GetProductByNameAsync(name);
                 if (product != null)
                 {
                     product.CurrentlyAvailableUnits = await stockReservationService.GetCurrentlyAvailableUnits(product.Id);
@@ -79,9 +79,9 @@ namespace DemoEshop.BusinessLayer.Facades
             {
                 if (filter.CategoryIds == null && filter.CategoryNames != null)
                 {
-                    filter.CategoryIds = await categoryService.GetCategoryIdsByNamesAsync(filter.CategoryNames);
+                    filter.CategoryIds = await albumService.GetAlbumIdsByNamesAsync(filter.CategoryNames);
                 }
-                var productListQueryResult = await productService.ListProductsAsync(filter);
+                var productListQueryResult = await songService.ListProductsAsync(filter);
                 if (!includeCurrentlyAvailableUnits)
                 {
                     return productListQueryResult;
@@ -103,8 +103,8 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                product.CategoryId = (await categoryService.GetCategoryIdsByNamesAsync(categoryName)).FirstOrDefault();
-                var productId = productService.Create(product);
+                product.CategoryId = (await albumService.GetAlbumIdsByNamesAsync(categoryName)).FirstOrDefault();
+                var productId = songService.Create(product);
                 await uow.Commit();
                 return productId;
             }
@@ -118,11 +118,11 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                if ((await productService.GetAsync(productDto.Id, false)) == null)
+                if ((await songService.GetAsync(productDto.Id, false)) == null)
                 {
                     return false;
                 }
-                await productService.Update(productDto);
+                await songService.Update(productDto);
                 await uow.Commit();
                 return true;
             }
@@ -136,11 +136,11 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                if ((await productService.GetAsync(id, false)) == null)
+                if ((await songService.GetAsync(id, false)) == null)
                 {
                     return false;
                 }
-                productService.DeleteProduct(id);
+                songService.DeleteProduct(id);
                 await uow.Commit();
                 return true;
             }
@@ -159,7 +159,7 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await categoryService.GetAsync(categoryId);
+                return await albumService.GetAsync(categoryId);
             }
         }
 
@@ -172,7 +172,7 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await categoryService.GetCategoryIdsByNamesAsync(names);
+                return await albumService.GetAlbumIdsByNamesAsync(names);
             }
         }
 
@@ -184,7 +184,7 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return (await categoryService.ListAllAsync()).Items;
+                return (await albumService.ListAllAsync()).Items;
             }
         }
 

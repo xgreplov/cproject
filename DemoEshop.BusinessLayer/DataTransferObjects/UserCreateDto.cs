@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DemoEshop.BusinessLayer.DataTransferObjects
 {
-    class UserCreateDto : DtoBase
+    public class UserCreateDto : DtoBase
     {
         [Required(ErrorMessage = "Username is required!")]
         [MaxLength(32, ErrorMessage = "Your username is too long!")]
