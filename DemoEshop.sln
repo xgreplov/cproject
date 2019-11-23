@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29326.143
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoEshop.DataAccessLayer.EntityFramework", "DemoEshop.DataAccessLayer.EntityFramework\DemoEshop.DataAccessLayer.EntityFramework.csproj", "{C431862D-ABC8-4D5B-BF2F-6B9305C45425}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoEshop.Infrastructure", "DemoEshop.Infrastructure\DemoEshop.Infrastructure.csproj", "{8F781223-7B19-49EA-8BAC-F0120DD394FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoEshop.Infrastructure.EntityFramework", "DemoEshop.Infrastructure.EntityFramework\DemoEshop.Infrastructure.EntityFramework.csproj", "{32143FC3-E14A-40C2-81E3-D0C04FACAD95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoEshop.BusinessLayer", "DemoEshop.BusinessLayer\DemoEshop.BusinessLayer.csproj", "{636F486E-19F9-4C48-B80C-F676C1DA6BF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{32143FC3-E14A-40C2-81E3-D0C04FACAD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32143FC3-E14A-40C2-81E3-D0C04FACAD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32143FC3-E14A-40C2-81E3-D0C04FACAD95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636F486E-19F9-4C48-B80C-F676C1DA6BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636F486E-19F9-4C48-B80C-F676C1DA6BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636F486E-19F9-4C48-B80C-F676C1DA6BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636F486E-19F9-4C48-B80C-F676C1DA6BF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

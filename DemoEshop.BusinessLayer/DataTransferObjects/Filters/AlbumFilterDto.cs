@@ -2,9 +2,8 @@
 
 namespace DemoEshop.BusinessLayer.DataTransferObjects.Filters
 {
-    public class CustomerFilterDto : FilterDtoBase
+    public class AlbumFilterDto : FilterDtoBase
     {
-        public string Email { get; set; }
-        public string Roles { get; set; }
+        public string[] Names { get; set; }
     }
 }

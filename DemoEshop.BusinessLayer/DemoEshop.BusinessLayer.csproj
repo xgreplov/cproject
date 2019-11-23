@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DemoEshop.BusinessLayer</RootNamespace>
     <AssemblyName>DemoEshop.BusinessLayer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -79,25 +80,19 @@
   <ItemGroup>
     <Compile Include="Config\BusinessLayerInstaller.cs" />
     <Compile Include="Config\MappingConfig.cs" />
-    <Compile Include="DataTransferObjects\CategoryDto.cs" />
+    <Compile Include="DataTransferObjects\AlbumDto.cs" />
     <Compile Include="DataTransferObjects\Common\DtoBase.cs" />
     <Compile Include="DataTransferObjects\Common\FilterDtoBase.cs" />
     <Compile Include="DataTransferObjects\Common\QueryResultDto.cs" />
-    <Compile Include="DataTransferObjects\CustomerDto.cs" />
     <Compile Include="DataTransferObjects\Enums\DiscountType.cs" />
-    <Compile Include="DataTransferObjects\Filters\CategoryFilterDto.cs" />
-    <Compile Include="DataTransferObjects\Filters\CustomerFilterDto.cs" />
-    <Compile Include="DataTransferObjects\Filters\RatingFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\AlbumFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\ArtistFilterDto.cs" />
     <Compile Include="DataTransferObjects\Filters\RateSongFilterDto.cs" />
-    <Compile Include="DataTransferObjects\Filters\ProductFilterDto.cs" />
-    <Compile Include="DataTransferObjects\Filters\StockFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\SongFilterDto.cs" />
     <Compile Include="DataTransferObjects\Filters\UserFilterDto.cs" />
-    <Compile Include="DataTransferObjects\OrderCreateDto.cs" />
-    <Compile Include="DataTransferObjects\RatingDto.cs" />
     <Compile Include="DataTransferObjects\RateSongDto.cs" />
-    <Compile Include="DataTransferObjects\ProductDto.cs" />
-    <Compile Include="DataTransferObjects\ProductReservationDto.cs" />
-    <Compile Include="DataTransferObjects\UserCreateDto.cs" />
+    <Compile Include="DataTransferObjects\SongDto.cs" />
+    <Compile Include="DataTransferObjects\ArtistDto.cs" />
     <Compile Include="DataTransferObjects\UserDto.cs" />
     <Compile Include="Facades\Common\FacadeBase.cs" />
     <Compile Include="Facades\OrderFacade.cs" />

@@ -5,15 +5,17 @@ namespace DemoEshop.BusinessLayer.DataTransferObjects
 {
     public class UserDto : DtoBase
     {
-        [Required]
+        public Guid Id { get; set; }
+
+        public string TableName { get; } = nameof(DemoEshopDbContext.Users);
+
         public string Username { get; set; }
 
-        [Required, StringLength(100)]
         public string PasswordSalt { get; set; }
 
-        [Required, StringLength(100)]
         public string PasswordHash { get; set; }
+        public Role Role { get; set; }
 
-        public string Roles { get; set; }
+        public string Email { get; set; }
     }
 }
