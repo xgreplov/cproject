@@ -6,8 +6,8 @@ using DemoEshop.BusinessLayer.DataTransferObjects;
 using DemoEshop.BusinessLayer.DataTransferObjects.Common;
 using DemoEshop.BusinessLayer.DataTransferObjects.Filters;
 using DemoEshop.BusinessLayer.Facades.Common;
-using DemoEshop.BusinessLayer.Services.Categories;
-using DemoEshop.BusinessLayer.Services.Products;
+using DemoEshop.BusinessLayer.Services.Albums;
+using DemoEshop.BusinessLayer.Services.Songs;
 using DemoEshop.BusinessLayer.Services.Reservation;
 using DemoEshop.Infrastructure.UnitOfWork;
 

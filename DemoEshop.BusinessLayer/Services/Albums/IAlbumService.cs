@@ -1,27 +1,19 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using DemoEshop.BusinessLayer.DataTransferObjects;
 using DemoEshop.BusinessLayer.DataTransferObjects.Common;
 using DemoEshop.BusinessLayer.DataTransferObjects.Filters;
 
-namespace DemoEshop.BusinessLayer.Services.Categories
+namespace DemoEshop.BusinessLayer.Services.Albums
 {
-    public interface ICategoryService
+    public interface IAlbumService
     {
         /// <summary>
         /// Gets ids of the categories with the corresponding names
         /// </summary>
         /// <param name="names">names of the categories</param>
         /// <returns>ids of categories with specified name</returns>
-        Task<Guid[]> GetCategoryIdsByNamesAsync(params string[] names);
-
-        /// <summary>
-        /// Gets all parent categories for specified category
-        /// </summary>
-        /// <param name="categoryId">category id</param>
-        /// <returns>all parent categories</returns>
-        Task<IEnumerable<CategoryDto>> GetCategoryPathAsync(Guid categoryId);
+        Task<Guid[]> GetAlbumIdsByNamesAsync(params string[] names);
 
         /// <summary>
         /// Gets DTO representing the entity according to ID
@@ -29,19 +21,19 @@ namespace DemoEshop.BusinessLayer.Services.Categories
         /// <param name="entityId">entity ID</param>
         /// <param name="withIncludes">include all entity complex types</param>
         /// <returns>The DTO representing the entity</returns>
-        Task<CategoryDto> GetAsync(Guid entityId, bool withIncludes = true);
+        Task<AlbumDto> GetAsync(Guid entityId, bool withIncludes = true);
 
         /// <summary>
         /// Creates new entity
         /// </summary>
         /// <param name="entityDto">entity details</param>
-        Guid Create(CategoryDto entityDto);
+        Guid Create(AlbumDto entityDto);
 
         /// <summary>
         /// Updates entity
         /// </summary>
         /// <param name="entityDto">entity details</param>
-        Task Update(CategoryDto entityDto);
+        Task Update(AlbumDto entityDto);
 
         /// <summary>
         /// Deletes entity with given Id
@@ -53,6 +45,6 @@ namespace DemoEshop.BusinessLayer.Services.Categories
         /// Gets all DTOs (for given type)
         /// </summary>
         /// <returns>all available dtos (for given type)</returns>
-        Task<QueryResultDto<CategoryDto, CategoryFilterDto>> ListAllAsync();
+        Task<QueryResultDto<AlbumDto, AlbumFilterDto>> ListAllAsync();
     }
 }
