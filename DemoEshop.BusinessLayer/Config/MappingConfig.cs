@@ -28,7 +28,6 @@ namespace DemoEshop.BusinessLayer.Config
             config.CreateMap<Customer, CustomerDto>().ReverseMap();
             config.CreateMap<User, UserDto>().ReverseMap();
             config.CreateMap<User, UserCreateDto>().ReverseMap();
-            config.CreateMap<Customer, UserCreateDto>().ReverseMap();
             config.CreateMap<QueryResult<Product>, QueryResultDto <ProductDto, ProductFilterDto>>();
             config.CreateMap<QueryResult<Category>, QueryResultDto<CategoryDto, CategoryFilterDto>>();
             config.CreateMap<QueryResult<Rating>, QueryResultDto<RatingDto, RatingFilterDto>>();

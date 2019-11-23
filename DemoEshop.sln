@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.539
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoEshop.DataAccessLayer.EntityFramework", "DemoEshop.DataAccessLayer.EntityFramework\DemoEshop.DataAccessLayer.EntityFramework.csproj", "{C431862D-ABC8-4D5B-BF2F-6B9305C45425}"
 EndProject
@@ -62,6 +62,7 @@ Global
 		{44A4C1F2-59B5-43A8-BED1-9A3E01F9CDC9} = {7EBA579A-917D-4860-A8D6-0AF57AE09A1D}
 		{8F781223-7B19-49EA-8BAC-F0120DD394FA} = {44A4C1F2-59B5-43A8-BED1-9A3E01F9CDC9}
 		{32143FC3-E14A-40C2-81E3-D0C04FACAD95} = {44A4C1F2-59B5-43A8-BED1-9A3E01F9CDC9}
+		{636F486E-19F9-4C48-B80C-F676C1DA6BF9} = {7EBA579A-917D-4860-A8D6-0AF57AE09A1D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C6DA505-8A06-4E6E-8C63-DDEB6B289706}

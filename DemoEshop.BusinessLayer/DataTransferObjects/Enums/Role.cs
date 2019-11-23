@@ -5,6 +5,6 @@
     /// </summary>
     public enum Role
     {
-        Percentage, Value3Plus1
+        Admin, Editor, Basic
     }
 }

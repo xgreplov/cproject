@@ -29,12 +29,12 @@ namespace DemoEshop.BusinessLayer.Config
                     .BasedOn<ServiceBase>()
                     .WithServiceDefaultInterfaces()
                     .LifestyleTransient(),
-
+/*
                 Classes.FromThisAssembly()
                     .BasedOn<IPriceCalculator>()
                     .WithService.FromInterface()
                     .LifestyleSingleton(),
-
+*/
                 Classes.FromThisAssembly()
                     .BasedOn<FacadeBase>()
                     .LifestyleTransient(),

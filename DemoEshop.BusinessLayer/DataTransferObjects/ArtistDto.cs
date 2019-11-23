@@ -6,10 +6,6 @@ namespace DemoEshop.BusinessLayer.DataTransferObjects
 {
     public class ArtistDto : DtoBase
     {
-        public Guid Id { get; set; }
-
-        public string TableName { get; } = nameof(DemoEshopDbContext.Artists);
-
         public string Name { get; set; }
 
         public string CountryOfOrigin { get; set; }

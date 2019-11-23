@@ -84,7 +84,8 @@
     <Compile Include="DataTransferObjects\Common\DtoBase.cs" />
     <Compile Include="DataTransferObjects\Common\FilterDtoBase.cs" />
     <Compile Include="DataTransferObjects\Common\QueryResultDto.cs" />
-    <Compile Include="DataTransferObjects\Enums\DiscountType.cs" />
+    <Compile Include="DataTransferObjects\Enums\Genre.cs" />
+    <Compile Include="DataTransferObjects\Enums\Role.cs" />
     <Compile Include="DataTransferObjects\Filters\AlbumFilterDto.cs" />
     <Compile Include="DataTransferObjects\Filters\ArtistFilterDto.cs" />
     <Compile Include="DataTransferObjects\Filters\RateSongFilterDto.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="DataTransferObjects\RateSongDto.cs" />
     <Compile Include="DataTransferObjects\SongDto.cs" />
     <Compile Include="DataTransferObjects\ArtistDto.cs" />
+    <Compile Include="DataTransferObjects\UserCreateDto.cs" />
     <Compile Include="DataTransferObjects\UserDto.cs" />
     <Compile Include="Facades\Common\FacadeBase.cs" />
     <Compile Include="Facades\OrderFacade.cs" />

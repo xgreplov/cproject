@@ -5,7 +5,6 @@ namespace DemoEshop.BusinessLayer.DataTransferObjects.Filters
     public class UserFilterDto : FilterDtoBase
     {
         public string Username { get; set; }
-
         public string Email { get; set; }
 
     }
