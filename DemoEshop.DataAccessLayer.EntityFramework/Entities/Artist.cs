@@ -17,9 +17,10 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Entities
         public string TableName { get; } = nameof(DemoEshopDbContext.Artists);
 
         [Required]
+        [MaxLength(64)]
         public string Name { get; set; }
 
-        [MaxLength(64)]
+        [MaxLength(256)]
         public string CountryOfOrigin { get; set; }
         public DateTime BirthDate { get; set; } = new DateTime(1950, 1, 1);
     }

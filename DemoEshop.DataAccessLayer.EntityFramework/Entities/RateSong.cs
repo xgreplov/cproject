@@ -16,6 +16,7 @@ namespace DemoEshop.DataAccessLayer.EntityFramework.Entities
         [NotMapped]
         public string TableName { get; } = nameof(DemoEshopDbContext.RateSongs);
 
+        [Required]
         [Range(0, 5)]
         public int Value { get; set; }
 
