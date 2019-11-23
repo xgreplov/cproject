@@ -78,5 +78,15 @@
       <DependentUpon>201709281705170_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DemoEshop.Infrastructure.EntityFramework\DemoEshop.Infrastructure.EntityFramework.csproj">
+      <Project>{32143fc3-e14a-40c2-81e3-d0c04facad95}</Project>
+      <Name>DemoEshop.Infrastructure.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemoEshop.Infrastructure\DemoEshop.Infrastructure.csproj">
+      <Project>{8f781223-7b19-49ea-8bac-f0120dd394fa}</Project>
+      <Name>DemoEshop.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
