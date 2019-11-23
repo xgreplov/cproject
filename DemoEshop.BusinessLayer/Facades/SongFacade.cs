@@ -13,7 +13,7 @@ using DemoEshop.Infrastructure.UnitOfWork;
 
 namespace DemoEshop.BusinessLayer.Facades
 {
-    public class ProductFacade : FacadeBase
+    public class SongFacade : FacadeBase
     {
         #region Dependencies
 
@@ -21,7 +21,7 @@ namespace DemoEshop.BusinessLayer.Facades
         private readonly ISongService songService;
         private readonly IReservationService stockReservationService;
 
-        public ProductFacade(IUnitOfWorkProvider unitOfWorkProvider, IAlbumService albumService, 
+        public SongFacade(IUnitOfWorkProvider unitOfWorkProvider, IAlbumService albumService, 
             ISongService songService, IReservationService stockReservationService)
             : base(unitOfWorkProvider)
         {
@@ -35,35 +35,30 @@ namespace DemoEshop.BusinessLayer.Facades
         #region ProductManagement
 
         /// <summary>
-        /// GetAsync product according to ID
+        /// GetAsync song according to ID
         /// </summary>
-        /// <param name="id">ID of the product</param>
-        /// <returns>The product with given ID, null otherwise</returns>
-        public async Task<ProductDto> GetProductAsync(Guid id)
+        /// <param name="id">ID of the song</param>
+        /// <returns>The song with given ID, null otherwise</returns>
+        public async Task<SongDto> GetSongAsync(Guid id)
         {
             using (UnitOfWorkProvider.Create())
             {
-                var product = await songService.GetAsync(id);
-                product.CurrentlyAvailableUnits = await stockReservationService.GetCurrentlyAvailableUnits(id);
-                return product;
+                var songDto = await songService.GetAsync(id);
+                return songDto;
             }
         }
 
         /// <summary>
-        /// GetAsync product according to ID
+        /// GetAsync song according to ID
         /// </summary>
-        /// <param name="name">name of the product</param>
-        /// <returns>The product with given name, null otherwise</returns>
-        public async Task<ProductDto> GetProductAsync(string name)
+        /// <param name="name">name of the song</param>
+        /// <returns>The song with given name, null otherwise</returns>
+        public async Task<SongDto> GetSongAsync(string name)
         {
             using (UnitOfWorkProvider.Create())
             {
-                var product = await songService.GetProductByNameAsync(name);
-                if (product != null)
-                {
-                    product.CurrentlyAvailableUnits = await stockReservationService.GetCurrentlyAvailableUnits(product.Id);
-                }
-                return product;
+                var songDto = await songService.GetSongByNameAsync(name);
+                return songDto;
             }
         }
 
@@ -71,68 +66,60 @@ namespace DemoEshop.BusinessLayer.Facades
         /// Gets products according to filter and required page
         /// </summary>
         /// <param name="filter">products filter</param>
-        /// <param name="includeCurrentlyAvailableUnits">Include number of currently available units for each product</param>
+        /// <param name="includeCurrentlyAvailableUnits">Include number of currently available units for each song</param>
         /// <returns></returns>
-        public async Task<QueryResultDto<ProductDto, ProductFilterDto>> GetProductsAsync(ProductFilterDto filter, bool includeCurrentlyAvailableUnits = true)
+        public async Task<QueryResultDto<SongDto, SongFilterDto>> GetSongsAsync(SongFilterDto filter, bool includeCurrentlyAvailableUnits = true)
         {
             using (UnitOfWorkProvider.Create())
             {
-                if (filter.CategoryIds == null && filter.CategoryNames != null)
-                {
-                    filter.CategoryIds = await albumService.GetAlbumIdsByNamesAsync(filter.CategoryNames);
-                }
-                var productListQueryResult = await songService.ListProductsAsync(filter);
+                var songListQueryResult = await songService.ListSongsAsync(filter);
                 if (!includeCurrentlyAvailableUnits)
                 {
-                    return productListQueryResult;
+                    return songListQueryResult;
                 }
-                foreach (var product in productListQueryResult.Items)
-                {
-                    product.CurrentlyAvailableUnits = await stockReservationService.GetCurrentlyAvailableUnits(product.Id);
-                }
-                return productListQueryResult;
+                return songListQueryResult;
             }
         }
 
         /// <summary>
-        /// Creates product with category that corresponds with given name
+        /// Creates song with category that corresponds with given name
         /// </summary>
-        /// <param name="product">product</param>
-        /// <param name="categoryName">category name</param>
-        public async Task<Guid> CreateProductWithCategoryNameAsync(ProductDto product, string categoryName)
+        /// <param name="song">song</param>
+        /// <param name="albumName">category name</param>
+        public async Task<Guid> CreateSongWithAlbumNameAsync(SongDto song, string albumName)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                product.CategoryId = (await albumService.GetAlbumIdsByNamesAsync(categoryName)).FirstOrDefault();
-                var productId = songService.Create(product);
+                song.AlbumId = (await albumService.GetAlbumIdsByNamesAsync(albumName)).FirstOrDefault();
+                var productId = songService.Create(song);
                 await uow.Commit();
                 return productId;
             }
         }
 
         /// <summary>
-        /// Updates product
+        /// Updates song
         /// </summary>
-        /// <param name="productDto">Product details</param>
-        public async Task<bool> EditProductAsync(ProductDto productDto)
+        /// <param name="songDto">Product details</param>
+        public async Task<bool> EditSongAsync(SongDto songDto)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                if ((await songService.GetAsync(productDto.Id, false)) == null)
+                if ((await songService.GetAsync(songDto.Id, false)) == null)
                 {
                     return false;
                 }
-                await songService.Update(productDto);
+                await songService.Update(songDto);
                 await uow.Commit();
                 return true;
             }
         }
 
         /// <summary>
-        /// Deletes product with given Id
+        /// Deletes song with given Id
         /// </summary>
-        /// <param name="id">Id of the product to delete</param>
-        public async Task<bool> DeleteProductAsync(Guid id)
+        /// <param name="id">Id of the song to delete</param>
+        public async Task<bool> DeleteSongAsync(Guid id)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
@@ -153,13 +140,13 @@ namespace DemoEshop.BusinessLayer.Facades
         /// <summary>
         /// Gets category according to ID
         /// </summary>
-        /// <param name="categoryId">category ID</param>
+        /// <param name="albumId">category ID</param>
         /// <returns>The category</returns>
-        public async Task<CategoryDto> GetCategoryAsync(Guid categoryId)
+        public async Task<AlbumDto> GetAlbumAsync(Guid albumId)
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await albumService.GetAsync(categoryId);
+                return await albumService.GetAsync(albumId);
             }
         }
 
@@ -180,7 +167,7 @@ namespace DemoEshop.BusinessLayer.Facades
         /// Gets all categories
         /// </summary>
         /// <returns>All available categories</returns>
-        public async Task<IEnumerable<CategoryDto>> GetAllCategories()
+        public async Task<IEnumerable<AlbumDto>> GetAllAlbums()
         {
             using (UnitOfWorkProvider.Create())
             {

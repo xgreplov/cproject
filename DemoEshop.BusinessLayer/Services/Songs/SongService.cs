@@ -28,7 +28,7 @@ namespace DemoEshop.BusinessLayer.Services.Products
         /// </summary>
         /// <param name="name">product name</param>
         /// <returns>product with given name</returns>
-        public async Task<SongDto> GetProductByNameAsync(string name)
+        public async Task<SongDto> GetSongByNameAsync(string name)
         {
             var queryResult = await Query.ExecuteQuery(new SongFilterDto { SearchedName = name });
             return queryResult.Items.SingleOrDefault();
@@ -39,7 +39,7 @@ namespace DemoEshop.BusinessLayer.Services.Products
         /// </summary>
         /// <param name="filter">The products filter</param>
         /// <returns>Filtered results</returns>
-        public async Task<QueryResultDto<SongDto, SongFilterDto>> ListProductsAsync(SongFilterDto filter)
+        public async Task<QueryResultDto<SongDto, SongFilterDto>> ListSongsAsync(SongFilterDto filter)
         {
             return await Query.ExecuteQuery(filter);
         }

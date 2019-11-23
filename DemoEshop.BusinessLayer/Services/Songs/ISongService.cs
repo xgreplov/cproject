@@ -13,7 +13,7 @@ namespace DemoEshop.BusinessLayer.Services.Products
         /// </summary>
         /// <param name="filter">The products filter</param>
         /// <returns>Filtered results</returns>
-        Task<QueryResultDto<SongDto, SongFilterDto>> ListProductsAsync(SongFilterDto filter);
+        Task<QueryResultDto<SongDto, SongFilterDto>> ListSongsAsync(SongFilterDto filter);
 
         /// <summary>
         /// Gets DTO representing the entity according to ID
@@ -28,7 +28,7 @@ namespace DemoEshop.BusinessLayer.Services.Products
         /// </summary>
         /// <param name="name">product name</param>
         /// <returns>product with given name</returns>
-        Task<SongDto> GetProductByNameAsync(string name);
+        Task<SongDto> GetSongByNameAsync(string name);
 
         /// <summary>
         /// Creates new entity
