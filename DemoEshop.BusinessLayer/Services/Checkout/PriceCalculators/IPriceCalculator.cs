@@ -5,7 +5,7 @@ namespace DemoEshop.BusinessLayer.Services.Checkout.PriceCalculators
 {
     public interface IPriceCalculator
     {
-        DiscountType DiscountType { get; }
+        Role DiscountType { get; }
 
         decimal CalculatePrice(RateSongDto RateSong);
     }

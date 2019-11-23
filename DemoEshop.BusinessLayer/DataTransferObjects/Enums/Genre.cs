@@ -1,4 +1,4 @@
-﻿namespace DemoEshop.DataAccessLayer.EntityFramework.Enums
+﻿namespace DemoEshop.BusinessLayer.DataTransferObjects.Enums
 {
     public enum Genre
     {

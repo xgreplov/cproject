@@ -7,7 +7,7 @@ namespace DemoEshop.BusinessLayer.Services.Checkout.PriceCalculators
     {
         private const int RequiredForDiscount = 4;
 
-        public DiscountType DiscountType { get; } = DiscountType.Value3Plus1;
+        public Role DiscountType { get; } = Role.Value3Plus1;
 
         public decimal CalculatePrice(RateSongDto RateSong)
         {

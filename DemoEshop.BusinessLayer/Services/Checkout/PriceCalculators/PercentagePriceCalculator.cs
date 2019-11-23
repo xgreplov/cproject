@@ -6,7 +6,7 @@ namespace DemoEshop.BusinessLayer.Services.Checkout.PriceCalculators
 {
     public class PercentagePriceCalculator : IPriceCalculator
     {
-        public DiscountType DiscountType { get; } = DiscountType.Percentage;
+        public Role DiscountType { get; } = Role.Percentage;
 
         public decimal CalculatePrice(RateSongDto RateSong)
         {

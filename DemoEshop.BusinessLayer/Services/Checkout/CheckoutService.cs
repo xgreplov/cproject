@@ -74,7 +74,7 @@ namespace DemoEshop.BusinessLayer.Services.Checkout
                        .CalculatePrice(RateSong)) ?? 0;
         }
         
-        private IPriceCalculator ResolvePriceCalculator(DiscountType discountType)
+        private IPriceCalculator ResolvePriceCalculator(Role discountType)
         {
             return priceCalculators.First(calculator => calculator.DiscountType.Equals(discountType));
         }
