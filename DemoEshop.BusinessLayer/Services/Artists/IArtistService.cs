@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using DemoEshop.BusinessLayer.DataTransferObjects;
 using DemoEshop.BusinessLayer.DataTransferObjects.Common;
 using DemoEshop.BusinessLayer.DataTransferObjects.Filters;
+using DemoEshop.DataAccessLayer.EntityFramework.Entities;
 
 namespace DemoEshop.BusinessLayer.Services.Sales
 {
-    public interface ISalesService
+    public interface IArtistService
     {
-        Task<IEnumerable<RateSongDto>> ListRateSongsAsync(RateSongFilterDto filter);
-        Task<QueryResultDto<RatingDto, RatingFilterDto>> ListOrdersAsync(RatingFilterDto filter);
+        Task<ArtistDto> GetArtistAccordingToNamelAsync(string name);
     }
 }

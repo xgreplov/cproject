@@ -13,15 +13,15 @@ namespace DemoEshop.BusinessLayer.Facades
 {
     public class OrderFacade : FacadeBase
     {
-        private readonly ISalesService salesService;
+        private readonly IArtistService artistService;
         private readonly ICheckoutService checkoutService;
         private readonly IReservationService productReservationService;
 
-        public OrderFacade(IUnitOfWorkProvider unitOfWorkProvider, ICheckoutService checkoutService, ISalesService salesService, 
+        public OrderFacade(IUnitOfWorkProvider unitOfWorkProvider, ICheckoutService checkoutService, IArtistService artistService, 
             IReservationService productReservationService) : base(unitOfWorkProvider)
         {
             this.checkoutService = checkoutService;
-            this.salesService = salesService;
+            this.artistService = artistService;
             this.productReservationService = productReservationService;
         }
 
@@ -66,7 +66,7 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return (await salesService.ListOrdersAsync(filter)).Items;
+                return (await artistService.ListOrdersAsync(filter)).Items;
             }
         }
 
@@ -79,7 +79,7 @@ namespace DemoEshop.BusinessLayer.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await salesService.ListRateSongsAsync(filter);
+                return await artistService.ListRateSongsAsync(filter);
             }
         }
         

@@ -8,7 +8,6 @@ using DemoEshop.BusinessLayer.DataTransferObjects.Filters;
 using DemoEshop.BusinessLayer.Facades.Common;
 using DemoEshop.BusinessLayer.Services.Categories;
 using DemoEshop.BusinessLayer.Services.Products;
-using DemoEshop.BusinessLayer.Services.Reservation;
 using DemoEshop.Infrastructure.UnitOfWork;
 
 namespace DemoEshop.BusinessLayer.Facades
@@ -19,15 +18,13 @@ namespace DemoEshop.BusinessLayer.Facades
 
         private readonly IAlbumService albumService;
         private readonly ISongService songService;
-        private readonly IReservationService stockReservationService;
 
         public SongFacade(IUnitOfWorkProvider unitOfWorkProvider, IAlbumService albumService, 
-            ISongService songService, IReservationService stockReservationService)
+            ISongService songService)
             : base(unitOfWorkProvider)
         {
             this.albumService = albumService;
             this.songService = songService;
-            this.stockReservationService = stockReservationService;
         }
 
         #endregion

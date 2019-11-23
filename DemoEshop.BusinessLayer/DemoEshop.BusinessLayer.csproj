@@ -109,21 +109,16 @@
     <Compile Include="QueryObjects\UserQueryObject.cs" />
     <Compile Include="Services\Albums\AlbumService.cs" />
     <Compile Include="Services\Albums\IAlbumService.cs" />
-    <Compile Include="Services\Checkout\CheckoutService.cs" />
-    <Compile Include="Services\Checkout\ICheckoutService.cs" />
-    <Compile Include="Services\Checkout\PriceCalculators\IPriceCalculator.cs" />
-    <Compile Include="Services\Checkout\PriceCalculators\PercentagePriceCalculator.cs" />
-    <Compile Include="Services\Checkout\PriceCalculators\Quantity3Plus1PriceCalculator.cs" />
     <Compile Include="Services\Common\CrudQueryServiceBase.cs" />
     <Compile Include="Services\Customers\CustomerService.cs" />
     <Compile Include="Services\Customers\ICustomerService.cs" />
+    <Compile Include="Services\RateSongs\IRateSongService.cs" />
+    <Compile Include="Services\RateSongs\RateSongService.cs" />
     <Compile Include="Services\Songs\ISongService.cs" />
-    <Compile Include="Services\Reservation\IReservationService.cs" />
-    <Compile Include="Services\Sales\ISalesService.cs" />
-    <Compile Include="Services\Sales\SalesService.cs" />
+    <Compile Include="Services\Artists\IArtistService.cs" />
+    <Compile Include="Services\Artists\ArtistService.cs" />
     <Compile Include="Services\Songs\SongService.cs" />
     <Compile Include="Services\Common\ServiceBase.cs" />
-    <Compile Include="Services\Reservation\ReservationService.cs" />
     <Compile Include="Services\Users\IUserService.cs" />
     <Compile Include="Services\Users\UserService.cs" />
   </ItemGroup>

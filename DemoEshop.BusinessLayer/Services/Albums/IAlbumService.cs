@@ -23,25 +23,7 @@ namespace DemoEshop.BusinessLayer.Services.Categories
         /// <param name="withIncludes">include all entity complex types</param>
         /// <returns>The DTO representing the entity</returns>
         Task<AlbumDto> GetAsync(Guid entityId, bool withIncludes = true);
-
-        /// <summary>
-        /// Creates new entity
-        /// </summary>
-        /// <param name="entityDto">entity details</param>
-        Guid Create(AlbumDto entityDto);
-
-        /// <summary>
-        /// Updates entity
-        /// </summary>
-        /// <param name="entityDto">entity details</param>
-        Task Update(AlbumDto entityDto);
-
-        /// <summary>
-        /// Deletes entity with given Id
-        /// </summary>
-        /// <param name="entityId">Id of the entity to delete</param>
-        void DeleteProduct(Guid entityId);
-
+        
         /// <summary>
         /// Gets all DTOs (for given type)
         /// </summary>
