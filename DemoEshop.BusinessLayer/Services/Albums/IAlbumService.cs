@@ -24,27 +24,15 @@ namespace DemoEshop.BusinessLayer.Services.Albums
         Task<AlbumDto> GetAsync(Guid entityId, bool withIncludes = true);
 
         /// <summary>
-        /// Creates new entity
-        /// </summary>
-        /// <param name="entityDto">entity details</param>
-        Guid Create(AlbumDto entityDto);
-
-        /// <summary>
-        /// Updates entity
-        /// </summary>
-        /// <param name="entityDto">entity details</param>
-        Task Update(AlbumDto entityDto);
-
-        /// <summary>
-        /// Deletes entity with given Id
-        /// </summary>
-        /// <param name="entityId">Id of the entity to delete</param>
-        void Delete(Guid entityId);
-
-        /// <summary>
         /// Gets all DTOs (for given type)
         /// </summary>
         /// <returns>all available dtos (for given type)</returns>
         Task<QueryResultDto<AlbumDto, AlbumFilterDto>> ListAllAsync();
+
+        Guid Create(AlbumDto entityDto);
+
+        Task Update(AlbumDto entityDto);
+
+        void Delete(Guid entityId);
     }
 }
