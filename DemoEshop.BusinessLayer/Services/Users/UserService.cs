@@ -10,6 +10,7 @@ using DemoEshop.BusinessLayer.DataTransferObjects.Filters;
 using DemoEshop.BusinessLayer.QueryObjects.Common;
 using DemoEshop.DataAccessLayer.EntityFramework.Entities;
 using DemoEshop.Infrastructure.Query;
+using DemoEshop.BusinessLayer.DataTransferObjects.Enums;
 
 namespace DemoEshop.BusinessLayer.Services.Users
 {
@@ -18,14 +19,14 @@ namespace DemoEshop.BusinessLayer.Services.Users
         private const int PBKDF2IterCount = 100000;
         private const int PBKDF2SubkeyLength = 160 / 8;
         private const int saltSize = 128 / 8;
-        
-        private readonly IRepository<Customer> customerRepository;
+
+        private readonly IRepository<User> userRepository;
         private readonly QueryObjectBase<UserDto, User, UserFilterDto, IQuery<User>> userQueryObject;
 
-        public UserService(IMapper mapper, IRepository<Customer> customerRepository, QueryObjectBase<UserDto, User, UserFilterDto, IQuery<User>> userQueryObject) 
+        public UserService(IMapper mapper, IRepository<User> userRepository, QueryObjectBase<UserDto, User, UserFilterDto, IQuery<User>> userQueryObject)
             : base(mapper)
         {
-            this.customerRepository = customerRepository;
+            this.userRepository = userRepository;
             this.userQueryObject = userQueryObject;
         }
 
@@ -37,30 +38,33 @@ namespace DemoEshop.BusinessLayer.Services.Users
 
         public async Task<Guid> RegisterUserAsync(UserCreateDto userDto)
         {
-            var customer = Mapper.Map<Customer>(userDto);
-            
-            if (await GetIfUserExistsAsync(customer.Username))
+            var user = Mapper.Map<User>(userDto);
+
+            if (await GetIfUserExistsAsync(user.Username))
             {
-                throw new ArgumentException();
+                throw new ArgumentException("username is already used");
             }
 
             var password = CreateHash(userDto.Password);
-            customer.PasswordHash = password.Item1;
-            customer.PasswordSalt = password.Item2;
+            user.PasswordHash = password.Item1;
+            user.PasswordSalt = password.Item2;
 
-            customerRepository.Create(customer);
+            user.Role = DataAccessLayer.EntityFramework.Enums.Role.Basic;
+            user.Email = userDto.Email;
 
-            return customer.Id;
+            userRepository.Create(user);
+
+            return user.Id;
         }
 
-        public async Task<(bool success, string roles)> AuthorizeUserAsync(string username, string password)
+        public async Task<(bool success, Role role)> AuthorizeUserAsync(string username, string password)
         {
             var userResult = await userQueryObject.ExecuteQuery(new UserFilterDto { Username = username });
             var user = userResult.Items.SingleOrDefault();
 
             var succ = user != null && VerifyHashedPassword(user.PasswordHash, user.PasswordSalt, password);
-            var roles = user?.Roles ?? "";
-            return (succ, roles);
+            var role = user?.Role ?? Role.Basic;
+            return (succ, role);
         }
 
         private async Task<bool> GetIfUserExistsAsync(string username)

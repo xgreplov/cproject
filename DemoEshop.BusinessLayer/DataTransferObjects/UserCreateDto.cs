@@ -1,10 +1,11 @@
 ﻿using DemoEshop.BusinessLayer.DataTransferObjects.Common;
+using DemoEshop.BusinessLayer.DataTransferObjects.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DemoEshop.BusinessLayer.DataTransferObjects
 {
-    class UserCreateDto : DtoBase
+    public class UserCreateDto : DtoBase
     {
         [Required(ErrorMessage = "Username is required!")]
         [MaxLength(32, ErrorMessage = "Your username is too long!")]
@@ -14,6 +15,7 @@ namespace DemoEshop.BusinessLayer.DataTransferObjects
         [EmailAddress(ErrorMessage = "This is not valid email address!")]
         public string Email { get; set; }
 
+        public Role Role { get; set; } 
 
         [Required(ErrorMessage = "Password is required!")]
         [StringLength(30, MinimumLength = 6, ErrorMessage = "Password length must be between 6 and 30")]
