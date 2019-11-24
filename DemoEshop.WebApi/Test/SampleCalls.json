@@ -7,11 +7,61 @@
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
+    {
+      "name": "http://localhost:56118/api/Songs/Query?sort=name&asc=true&name=Amnesia&album=YoungBlood",
+      "request": {
+        "url": {
+          "raw": "http://localhost:56118/api/Songs/Query?sort=name&asc=true&name=Amnesia&album=YoungBlood",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "56118",
+          "path": [
+            "api",
+            "Songs",
+            "Query"
+          ],
+          "query": [
+            {
+              "key": "sort",
+              "value": "name",
+              "equals": true,
+              "description": ""
+            },
+            {
+              "key": "asc",
+              "value": "true",
+              "equals": true,
+              "description": ""
+            },
+            {
+              "key": "name",
+              "value": "Amnesia",
+              "equals": true,
+              "description": ""
+            },
+            {
+              "key": "album",
+              "value": "YoungBlood",
+              "equals": true,
+              "description": ""
+            }
+          ],
+          "variable": []
+        },
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": "Query"
+      },
+      "response": []
+    },
 		{
-			"name": "http://localhost:56118/api/Products/Query?sort=name&asc=true&name=Samsung&minimalPrice=5000&maximalPrice=23000&category=android&category=ios",
+			"name": "http://localhost:56118/api/Songs/Get?name=amnesia",
 			"request": {
 				"url": {
-					"raw": "http://localhost:56118/api/Products/Query?sort=name&asc=true&name=Samsung&minimalPrice=5000&maximalPrice=23000&category=android&category=ios",
+					"raw": "http://localhost:56118/api/Products/Get?name=amnesia",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -19,81 +69,13 @@
 					"port": "56118",
 					"path": [
 						"api",
-						"Products",
-						"Query"
-					],
-					"query": [
-						{
-							"key": "sort",
-							"value": "name",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "asc",
-							"value": "true",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "name",
-							"value": "Samsung",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "minimalPrice",
-							"value": "5000",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "maximalPrice",
-							"value": "23000",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "category",
-							"value": "android",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "category",
-							"value": "ios",
-							"equals": true,
-							"description": ""
-						}
-					],
-					"variable": []
-				},
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "Query"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:56118/api/Products/Get?name=lg",
-			"request": {
-				"url": {
-					"raw": "http://localhost:56118/api/Products/Get?name=lg",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "56118",
-					"path": [
-						"api",
-						"Products",
+						"Songs",
 						"Get"
 					],
 					"query": [
 						{
 							"key": "name",
-							"value": "lg",
+							"value": "amnesia",
 							"equals": true,
 							"description": ""
 						}
@@ -108,9 +90,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:56118/api/Products/",
+			"name": "http://localhost:56118/api/Songs/",
 			"request": {
-				"url": "http://localhost:56118/api/Products/",
+				"url": "http://localhost:56118/api/Songs/",
 				"method": "POST",
 				"header": [
 					{
@@ -121,16 +103,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"Product\": {\n\t    \"Id\": \"00000000-0000-0000-0000-000000000000\",\n\t\t\"Name\": \"Galaxy S8\",\n\t\t\"Price\": 18890,\n\t    \"StoredUnits\": 3, \n\t    \"DiscountPercentage\": 0,\n\t    \"DiscountType\": 0,\n        \"Description\": \"Samsung Galaxy S8 smartphone was launched in March 2017. The phone comes with a 5.80-inch touchscreen display with a resolution of 1440 pixels by 2960 pixels at a PPI of 570 pixels per inch. Samsung Galaxy S8 price in India starts from Rs. 57,900. The Samsung Galaxy S8 is powered by 1.9GHz octa-core Samsung Exynos 8895 processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that can be expanded up to 256GB via a microSD card. As far as the cameras are concerned, the Samsung Galaxy S8 packs a 12-megapixel primary camera on the rear and a 8-megapixel front shooter for selfies. The Samsung Galaxy S8 runs Android 7.0 and is powered by a 3000mAh non removable battery. It measures 148.90 x 68.10 x 8.00 (height x width x thickness) and weigh 155.00 grams. The Samsung Galaxy S8 is a single SIM (GSM) . Connectivity options include Wi-Fi, GPS, Bluetooth, NFC, 3G and 4G. Sensors on the phone include Compass Magnetometer, Proximity sensor, Accelerometer, Ambient light sensor and Gyroscope.\",\n\t    \"ProductImgUri\": \"\\\\Content\\\\Images\\\\Products\\\\Samsung-Galaxy-S8.jpg\",\n\t    \"CurrentlyAvailableUnits\": null\n\t\t},\n\t\"CategoryName\": \"android\"\n}"
+					"raw": "{\n\t\"Song\": {\n\t    \"Id\": \"00000000-0000-0000-0000-000000000000\",\n\t\t\"Name\": \"Amnesia\",\n\t\t    \"Lyrics\": BlaBla, \n\t    \"SongInfo\": xxxaaasdddsdef,\n\t    \t},\n\t\"AlbumName\": \"blabla\"\n}"
 				},
 				"description": "Create"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:56118/api/Products/aa15dc64-5c07-40fe-a916-175165b9b90f",
+			"name": "http://localhost:56118/api/Songs/aa15dc64-5c07-40fe-a916-175165b9b90f",
 			"request": {
-				"url": "http://localhost:56118/api/Products/aa15dc64-5c07-40fe-a916-175165b9b90f",
+				"url": "http://localhost:56118/api/Songs/aa15dc64-5c07-40fe-a916-175165b9b90f",
 				"method": "PUT",
 				"header": [
 					{

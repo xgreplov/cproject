@@ -7,7 +7,7 @@ namespace DemoEshop.BusinessLayer.DataTransferObjects.Filters
     {
         public Guid AlbumId { get; set; }
 
-        public DateTime ReleaseDate { get; set; }
+        public string AlbumName { get; set; }
 
         public string SearchedName { get; set; }
     }
