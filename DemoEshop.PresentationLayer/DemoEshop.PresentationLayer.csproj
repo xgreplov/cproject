@@ -149,21 +149,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Windsor\WindsorControllerFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Admin\AdminCustomersController.cs" />
-    <Compile Include="Controllers\Admin\AdminProductsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\SongsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Attributes\MultiPostActionAttribute.cs" />
     <Compile Include="Helpers\Cookies\ShoppingCartCookieManager.cs" />
     <Compile Include="Models\Accounts\LoginModel.cs" />
-    <Compile Include="Models\AdminProducts\AdminProductEditModel.cs" />
-    <Compile Include="Models\ShoppingCart\OrderConfirmationViewModel.cs" />
-    <Compile Include="Models\Products\ProductListViewModel.cs" />
-    <Compile Include="Models\ShoppingCart\ShoppingCartViewModel.cs" />
+    <Compile Include="Models\Songs\SongListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -173,19 +167,6 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\Products\3222016120930AM_635_apple_iphone_se.jpeg" />
-    <Content Include="Content\Images\Products\910201513146AM_635_apple_iphone_6s_plus.jpeg" />
-    <Content Include="Content\Images\Products\asus_zenfone_5.jpeg" />
-    <Content Include="Content\Images\Products\blackberry_priv.jpg" />
-    <Content Include="Content\Images\Products\HTC_10.jpg" />
-    <Content Include="Content\Images\Products\LG-G5.jpg" />
-    <Content Include="Content\Images\Products\microsoft_lumia_650.jpeg" />
-    <Content Include="Content\Images\Products\microsoft_lumia_950_xl.jpeg" />
-    <Content Include="Content\Images\Products\Samsung-Galaxy-S8.jpg" />
-    <Content Include="Content\Images\Products\samsung_galaxy_J7.jpeg" />
-    <Content Include="Content\Images\Products\sony_xperia_z5_premium.jpeg" />
-    <Content Include="Content\Images\Products\xiaomi_mi_5.jpeg" />
-    <Content Include="Content\Images\Products\zte-nubia-z9-exclusive.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -332,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

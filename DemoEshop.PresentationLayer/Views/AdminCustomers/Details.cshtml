@@ -9,9 +9,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Value)
         </th>
     </tr>
@@ -20,10 +17,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.Name)
+                @Html.DisplayFor(modelItem => item.UserId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Value)
+                @Html.DisplayFor(modelItem => item.SongId)
             </td>
         </tr>
     }

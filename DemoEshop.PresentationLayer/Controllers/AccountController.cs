@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DemoEshop.PresentationLayer.Helpers.Cookies;
 using DemoEshop.PresentationLayer.Models.Accounts;
+using DemoEshop.BusinessLayer.DataTransferObjects
+using DemoEshop.BusinessLayer.DataTransferObjects.Enums;
 
 namespace DemoEshop.PresentationLayer.Controllers
 {
@@ -29,7 +31,7 @@ namespace DemoEshop.PresentationLayer.Controllers
         {
             try
             {
-                await CustomerFacade.RegisterCustomer(userCreateDto);
+                Guid newUserGuid = await UserFacade.RegisterUserAsync(userCreateDto);
                 //FormsAuthentication.SetAuthCookie(userCreateDto.Username, false);
                 
                 var authTicket = new FormsAuthenticationTicket(1, userCreateDto.Username, DateTime.Now,
@@ -55,13 +57,13 @@ namespace DemoEshop.PresentationLayer.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginModel model, string returnUrl)
         {
-            (bool success, string roles) = await CustomerFacade.Login(model.Username, model.Password);
+            (bool success, Role role) = await UserFacade.AuthorizeUserAsync(model.Username, model.Password);
             if (success)
             {
                 //FormsAuthentication.SetAuthCookie(model.Username, false);
 
                 var authTicket = new FormsAuthenticationTicket(1, model.Username, DateTime.Now,
-                    DateTime.Now.AddMinutes(30), false, roles);
+                    DateTime.Now.AddMinutes(30), false, role.ToString());
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                 HttpContext.Response.Cookies.Add(authCookie);
@@ -84,9 +86,9 @@ namespace DemoEshop.PresentationLayer.Controllers
 
         public async Task<ActionResult> Logout()
         {
-            var customer = await CustomerFacade.GetUserAccordingToUsernameAsync(User.Identity.Name);
-            Response.ClearAllShoppingCartItems(customer.Username);
-            OrderFacade.ReleaseReservations(customer.Id);
+            UserDto user = await UserFacade.GetUserAccordingToUsernameAsync(User.Identity.Name);
+// vyčistit songrate            Response.ClearAllShoppingCartItems(user.Username);
+//            OrderFacade.ReleaseReservations(customer.Id);
 
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");

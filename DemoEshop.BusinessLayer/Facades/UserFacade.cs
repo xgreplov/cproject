@@ -34,7 +34,7 @@ namespace DemoEshop.BusinessLayer.Facades
                 return userDto;
             }
         }
-        
+
         public async Task<(bool success, Role role)> AuthorizeUserAsync(string username, string password)
         {
             using (UnitOfWorkProvider.Create())
