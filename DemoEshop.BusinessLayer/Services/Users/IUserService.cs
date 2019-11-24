@@ -10,5 +10,11 @@ namespace DemoEshop.BusinessLayer.Services.Users
         Task<Guid> RegisterUserAsync(UserCreateDto user);
         Task<(bool success, Role role)> AuthorizeUserAsync(string username, string password);
         Task<UserDto> GetUserAccordingToUsernameAsync(string username);
+        
+        Guid Create(UserDto entityDto);
+
+        Task Update(UserDto entityDto);
+
+        void Delete(Guid entityId);
     }
 }

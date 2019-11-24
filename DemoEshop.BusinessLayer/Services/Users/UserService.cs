@@ -14,25 +14,20 @@ using DemoEshop.BusinessLayer.DataTransferObjects.Enums;
 
 namespace DemoEshop.BusinessLayer.Services.Users
 {
-    public class UserService : ServiceBase, IUserService
+    public class UserService :  CrudQueryServiceBase<User, UserDto, UserFilterDto>, IUserService
     {
         private const int PBKDF2IterCount = 100000;
         private const int PBKDF2SubkeyLength = 160 / 8;
         private const int saltSize = 128 / 8;
 
-        private readonly IRepository<User> userRepository;
-        private readonly QueryObjectBase<UserDto, User, UserFilterDto, IQuery<User>> userQueryObject;
-
         public UserService(IMapper mapper, IRepository<User> userRepository, QueryObjectBase<UserDto, User, UserFilterDto, IQuery<User>> userQueryObject)
-            : base(mapper)
+            : base(mapper, userRepository, userQueryObject)
         {
-            this.userRepository = userRepository;
-            this.userQueryObject = userQueryObject;
         }
 
         public async Task<UserDto> GetUserAccordingToUsernameAsync(string username)
         {
-            var queryResult = await userQueryObject.ExecuteQuery(new UserFilterDto() { Username = username });
+            var queryResult = await Query.ExecuteQuery(new UserFilterDto() { Username = username });
             return queryResult.Items.SingleOrDefault();
         }
 
@@ -52,14 +47,14 @@ namespace DemoEshop.BusinessLayer.Services.Users
             user.Role = DataAccessLayer.EntityFramework.Enums.Role.Basic;
             user.Email = userDto.Email;
 
-            userRepository.Create(user);
+            Repository.Create(user);
 
             return user.Id;
         }
 
         public async Task<(bool success, Role role)> AuthorizeUserAsync(string username, string password)
         {
-            var userResult = await userQueryObject.ExecuteQuery(new UserFilterDto { Username = username });
+            var userResult = await Query.ExecuteQuery(new UserFilterDto { Username = username });
             var user = userResult.Items.SingleOrDefault();
 
             var succ = user != null && VerifyHashedPassword(user.PasswordHash, user.PasswordSalt, password);
@@ -69,7 +64,7 @@ namespace DemoEshop.BusinessLayer.Services.Users
 
         private async Task<bool> GetIfUserExistsAsync(string username)
         {
-            var queryResult = await userQueryObject.ExecuteQuery(new UserFilterDto { Username = username });
+            var queryResult = await Query.ExecuteQuery(new UserFilterDto { Username = username });
             return (queryResult.Items.Count() == 1);
         }
 
@@ -94,6 +89,11 @@ namespace DemoEshop.BusinessLayer.Services.Users
 
                 return Tuple.Create(Convert.ToBase64String(subkey), Convert.ToBase64String(salt));
             }
+        }
+
+        protected override Task<User> GetWithIncludesAsync(Guid entityId)
+        {
+            return Repository.GetAsync(entityId, nameof(User));
         }
     }
 }
