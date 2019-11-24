@@ -29,5 +29,11 @@ namespace DemoEshop.BusinessLayer.Services.Categories
         /// </summary>
         /// <returns>all available dtos (for given type)</returns>
         Task<QueryResultDto<AlbumDto, AlbumFilterDto>> ListAllAsync();
+
+        Guid Create(AlbumDto entityDto);
+
+        Task Update(AlbumDto entityDto);
+
+        void Delete(Guid entityId);
     }
 }

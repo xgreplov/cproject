@@ -46,7 +46,7 @@ namespace DemoEshop.BusinessLayer.Services.Products
         /// Deletes entity with given Id
         /// </summary>
         /// <param name="entityId">Id of the entity to delete</param>
-        void DeleteProduct(Guid entityId);
+        void Delete(Guid entityId);
 
         /// <summary>
         /// Gets all DTOs (for given type)

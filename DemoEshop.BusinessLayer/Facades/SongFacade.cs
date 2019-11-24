@@ -124,7 +124,7 @@ namespace DemoEshop.BusinessLayer.Facades
                 {
                     return false;
                 }
-                songService.DeleteProduct(id);
+                songService.Delete(id);
                 await uow.Commit();
                 return true;
             }
