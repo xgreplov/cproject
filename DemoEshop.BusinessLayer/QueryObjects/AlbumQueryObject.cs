@@ -11,11 +11,11 @@ using DemoEshop.Infrastructure.Query.Predicates.Operators;
 
 namespace DemoEshop.BusinessLayer.QueryObjects
 {
-    public class AlbumQueryObject : QueryObjectBase<CategoryDto, Category, CategoryFilterDto, IQuery<Category>>
+    public class AlbumQueryObject : QueryObjectBase<AlbumDto, Album, AlbumFilterDto, IQuery<Album>>
     {
-        public AlbumQueryObject(IMapper mapper, IQuery<Category> query) : base(mapper, query) { }
+        public AlbumQueryObject(IMapper mapper, IQuery<Album> query) : base(mapper, query) { }
 
-        protected override IQuery<Category> ApplyWhereClause(IQuery<Category> query, AlbumFilterDto filter)
+        protected override IQuery<Album> ApplyWhereClause(IQuery<Album> query, AlbumFilterDto filter)
         {
             if (filter.Names == null || !filter.Names.Any())
             {
