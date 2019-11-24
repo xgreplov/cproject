@@ -76,7 +76,7 @@ namespace DemoEshop.BusinessLayer.Services.Common
         /// Deletes entity with given Id
         /// </summary>
         /// <param name="entityId">Id of the entity to delete</param>
-        public virtual void DeleteProduct(Guid entityId)
+        public virtual void Delete(Guid entityId)
         {
             Repository.Delete(entityId);
         }

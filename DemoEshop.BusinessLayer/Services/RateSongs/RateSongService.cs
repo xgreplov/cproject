@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DemoEshop.BusinessLayer.DataTransferObjects;
-using DemoEshop.BusinessLayer.DataTransferObjects.Common;
 using DemoEshop.BusinessLayer.DataTransferObjects.Filters;
 using DemoEshop.BusinessLayer.QueryObjects.Common;
 using DemoEshop.BusinessLayer.Services.Common;
@@ -15,7 +11,7 @@ using DemoEshop.Infrastructure.Query;
 
 namespace DemoEshop.BusinessLayer.Services.RateSongs
 {
-    class RateSongService : CrudQueryServiceBase<RateSong, RateSongDto, RateSongFilterDto>, IRateSongService
+    public class RateSongService : CrudQueryServiceBase<RateSong, RateSongDto, RateSongFilterDto>, IRateSongService
     {
         public RateSongService(IMapper mapper, IRepository<RateSong> rateRepository, QueryObjectBase<RateSongDto, RateSong, RateSongFilterDto, IQuery<RateSong>> songRateQueryObject)
             : base(mapper, rateRepository, songRateQueryObject) { }

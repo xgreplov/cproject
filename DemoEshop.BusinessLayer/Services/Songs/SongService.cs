@@ -15,13 +15,14 @@ namespace DemoEshop.BusinessLayer.Services.Songs
 {
     public class SongService : CrudQueryServiceBase<Song, SongDto, SongFilterDto>, ISongService
     {
-        public SongService(IMapper mapper, QueryObjectBase<SongDto, Song, SongFilterDto, IQuery<Song>> productQuery, IRepository<Song> songRepository)
-            : base(mapper, songRepository, productQuery) { }
+        public SongService(IMapper mapper, QueryObjectBase<SongDto, Song, SongFilterDto, IQuery<Song>> songQuery, IRepository<Song> songRepository)
+            : base(mapper, songRepository, songQuery) { }
 
         protected override Task<Song> GetWithIncludesAsync(Guid entityId)
         {
             return Repository.GetAsync(entityId, nameof(Song.Album));
         }
+
         public async Task<SongDto> GetSongByNameAsync(string name)
         {
             var queryResult = await Query.ExecuteQuery(new SongFilterDto { SearchedName = name });

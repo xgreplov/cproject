@@ -29,12 +29,5 @@ namespace DemoEshop.BusinessLayer.Services.Artists
             var queryResult = await Query.ExecuteQuery(new ArtistFilterDto { Name = name });
             return queryResult.Items.SingleOrDefault();
         }
-
-
-        public async Task<List<ArtistDto>> GetArtistsAccordingToCountryOfOriginAsync(string countryOfOrigin)
-        {
-            var queryResult = await Query.ExecuteQuery(new ArtistFilterDto { CountryOfOrigin = countryOfOrigin });
-            return queryResult.Items.ToList();
-        }
     }
 }

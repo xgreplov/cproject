@@ -96,6 +96,7 @@
     <Compile Include="DataTransferObjects\ArtistDto.cs" />
     <Compile Include="DataTransferObjects\UserCreateDto.cs" />
     <Compile Include="DataTransferObjects\UserDto.cs" />
+    <Compile Include="Facades\ArtistFacade.cs" />
     <Compile Include="Facades\Common\FacadeBase.cs" />
     <Compile Include="Facades\OrderFacade.cs" />
     <Compile Include="Facades\SongFacade.cs" />
