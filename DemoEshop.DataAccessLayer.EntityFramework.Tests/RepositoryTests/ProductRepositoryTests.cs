@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using DemoEshop.DataAccessLayer.EntityFramework.Entities;
 using DemoEshop.DataAccessLayer.EntityFramework.Enums;
-using DemoEshop.Infrastructure;
-using DemoEshop.Infrastructure.UnitOfWork;
 using NUnit.Framework;
 
 namespace DemoEshop.DataAccessLayer.EntityFramework.Tests.RepositoryTests

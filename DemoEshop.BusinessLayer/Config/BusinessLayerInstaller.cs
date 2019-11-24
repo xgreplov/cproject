@@ -5,7 +5,6 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using DemoEshop.BusinessLayer.Facades.Common;
 using DemoEshop.BusinessLayer.QueryObjects.Common;
-using DemoEshop.BusinessLayer.Services.Checkout.PriceCalculators;
 using DemoEshop.BusinessLayer.Services.Common;
 using DemoEshop.DataAccessLayer.EntityFramework.Config;
 
